@@ -16,5 +16,7 @@ The instrument does not claim to measure trust, usability, cognitive load, or in
 ## Use
 
 Open `index.html` for English or `index_zh.html` for Traditional Chinese. Keep participant responses outside the repository, use study identifiers instead of names, and follow the approved consent and retention procedure. Remove document properties and local paths before sharing exports.
+In the formal questionnaire, the English version was used as below:
+https://weeptw.github.io/FQAN/questionnaire/
 
 The questionnaire and FQAN-authored supporting material use the root MIT License. Record the instrument version and cite FQAN in resulting publications.
