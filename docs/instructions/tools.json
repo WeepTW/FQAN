@@ -1,0 +1,285 @@
+{
+  "version": 9,
+  "packageIndex": "package.json",
+  "lookup": [
+    {
+      "id": "parameter-ledger",
+      "keywords": [
+        "args",
+        "args.json",
+        "parameter ledger",
+        "configuration ledger",
+        "protocol notes",
+        "baseline notes"
+      ],
+      "paths": [
+        "../args.json",
+        "args-ledger-notes.md",
+        "../../src/AGENTS.md"
+      ]
+    },
+    {
+      "id": "workspace-governance",
+      "keywords": [
+        "governance",
+        "policy",
+        "write boundary",
+        "active repo",
+        "authority",
+        "thesis"
+      ],
+      "paths": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../asset/folder_structure.md",
+        "../log/index.json"
+      ]
+    },
+    {
+      "id": "parameter-ledger-details",
+      "keywords": [
+        "parameters",
+        "batch_size",
+        "learning rate",
+        "epochs",
+        "decoding",
+        "active default",
+        "planned target",
+        "Mistral small 4",
+        "Mistral-7B-Instruct-v0.2",
+        "Mistral-7B-Instruct-v0.3",
+        "APOLLO with FINDER strategy"
+      ],
+      "paths": [
+        "../args.json",
+        "args-ledger-notes.md",
+        "../../AGENTS.md",
+        "../../src/AGENTS.md"
+      ]
+    },
+    {
+      "id": "prompt-protocol",
+      "keywords": [
+        "new_prompt",
+        "few-shot",
+        "dynamic-shot",
+        "dynamic-prompt",
+        "sample insertion",
+        "k-shot"
+      ],
+      "paths": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json"
+      ]
+    },
+    {
+      "id": "baseline-registry",
+      "keywords": [
+        "baseline",
+        "mirror",
+        "FINDER",
+        "DyRRen",
+        "APOLLO",
+        "FinQA",
+        "FinFlier",
+        "Data-FINDER",
+        "FinQANet"
+      ],
+      "paths": [
+        "../code/FINDER",
+        "../code/DyRRen",
+        "../code/APOLLO",
+        "../code/FinQA",
+        "../code/FinFlier",
+        "../code/Data-FINDER"
+      ]
+    },
+    {
+      "id": "finflier-text-binding",
+      "keywords": [
+        "FinFlier",
+        "text-binding",
+        "binding result",
+        "reason",
+        "GraphicalOverlay",
+        "ConversationInfo"
+      ],
+      "paths": [
+        "../code/FinFlier/Backend/example.md",
+        "../code/FinFlier/Backend/format_example.md",
+        "../code/FinFlier/Backend/group_example.md"
+      ]
+    },
+    {
+      "id": "finflier-sample-data",
+      "keywords": [
+        "FinFlier sample",
+        "frontend data",
+        "backend data",
+        "csv",
+        "json",
+        "test data"
+      ],
+      "paths": [
+        "../code/FinFlier/system/Backend/data",
+        "../code/FinFlier/system/Frontend/src/assets/data",
+        "../code/FinFlier/system",
+        "../code/FinFlier/system"
+      ]
+    },
+    {
+      "id": "finder-mistral-runtime",
+      "keywords": [
+        "active runtime",
+        "requirements",
+        "generator",
+        "retriever",
+        "in-context",
+        "runtime"
+      ],
+      "paths": [
+        "../../src",
+        "../../src/requirements.txt",
+        "../../src/finqa_run.py",
+        "../../src/mistral_codegen.py",
+        "../../src/Retriever Codes/Flan/lora_flan_large_finqa_rel_fact.py",
+        "../../src/Retriever Codes/Mistral/mistral_train.py",
+        "../../src/Retriever Codes/Mistral/mistral_inference.py"
+      ]
+    },
+    {
+      "id": "logs",
+      "keywords": [
+        "logs",
+        "run history",
+        "governance audit",
+        "prompt protocol",
+        "workspace audit"
+      ],
+      "paths": [
+        "../log/index.json",
+        "../log/2026-04-16-workspace-governance-json-transition.json",
+        "../log/2026-04-18-args-ledger-json-cutover.json",
+        "../log/2026-04-18-codex-instructions-protected-scope-refresh.json"
+      ]
+    },
+    {
+      "id": "experiment-6-7-runtime",
+      "keywords": [
+        "experiment 6",
+        "experiment 7",
+        "data binding",
+        "target answer",
+        "vLLM",
+        "llama.cpp",
+        "ChatMock",
+        "MAX_TOKENS"
+      ],
+      "paths": [
+        "../args.json",
+        "args-ledger-notes.md",
+        "../../src/dist/experiment_6_data_binding_evaluation.sh",
+        "../../src/dist/experiment_6_narratives.sh",
+        "../../src/dist/experiment_7_in_context_selection.sh",
+        "../../src/dist/experiment_7_generator_answer.sh",
+        "../../src/dist/experiment_6_retriever.sh",
+        "../../src/dist/experiment_6_no_adapter.sh",
+        "../../src/dist/experiment_6_api_key.sh",
+        "../../src/dist/experiment_7_formal_tmux_run.sh",
+        "../../src/dist/generator_no_api_key.sh",
+        "../../src/dist/generator_api_key.sh"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "workspace-package-json-valid",
+      "cwd": ".",
+      "bash": "jq empty package.json",
+      "note": "Validate the workspace package index JSON."
+    },
+    {
+      "id": "workspace-tools-json-valid",
+      "cwd": ".",
+      "bash": "jq empty tools.json",
+      "note": "Validate the workspace lookup index JSON."
+    },
+    {
+      "id": "baseline-finder-readme-present",
+      "cwd": ".",
+      "bash": "test -f ../code/FINDER/README.md",
+      "note": "Confirm the primary FINDER baseline mirror exists."
+    },
+    {
+      "id": "baseline-dyrren-present",
+      "cwd": ".",
+      "bash": "test -d ../code/DyRRen",
+      "note": "Confirm the DyRRen reference repo exists."
+    },
+    {
+      "id": "baseline-apollo-present",
+      "cwd": ".",
+      "bash": "test -d ../code/APOLLO",
+      "note": "Confirm the APOLLO reference repo exists."
+    },
+    {
+      "id": "data-finder-finqa-train-csv-present",
+      "cwd": ".",
+      "bash": "test -f ../code/Data-FINDER/Data_Retriever_Module/finqa_train_rel_fact_instruction_2.csv",
+      "note": "Confirm the organized FINDER-style retriever training CSV exists."
+    },
+    {
+      "id": "finflier-reference-output-present",
+      "cwd": ".",
+      "bash": "test -f ../code/FinFlier/system/Backend/data/output.json",
+      "note": "Confirm FinFlier reference sample output exists."
+    },
+    {
+      "id": "finder-mistral-generator-dry-run",
+      "targetEnv": "reed",
+      "cwd": "../../src",
+      "bash": "conda run -n reed python finqa_run.py --dry_run --end 1",
+      "note": "Dry-run the active generator entry without claiming a full benchmark execution."
+    },
+    {
+      "id": "finder-mistral-in-context-compile",
+      "targetEnv": "reed",
+      "cwd": "../../src",
+      "bash": "conda run -n reed python -m py_compile In_Context_Selection/learn_policy.py In_Context_Selection/examples_extraction.py",
+      "note": "Syntax-check the in-context selection files."
+    },
+    {
+      "id": "finder-mistral-flan-compile",
+      "targetEnv": "reed",
+      "cwd": "../../src",
+      "bash": "conda run -n reed python -m py_compile \"Retriever Codes/Flan/lora_flan_large_finqa_rel_fact.py\"",
+      "note": "Syntax-check the FLAN retriever script."
+    },
+    {
+      "id": "finder-mistral-mistral-compile",
+      "targetEnv": "reed",
+      "cwd": "../../src",
+      "bash": "conda run -n reed python -m py_compile \"Retriever Codes/Mistral/mistral_train.py\" \"Retriever Codes/Mistral/mistral_inference.py\"",
+      "note": "Syntax-check the Mistral retriever scripts."
+    },
+    {
+      "id": "finder-mistral-experiment-6-7-shell-syntax",
+      "targetEnv": "reed",
+      "cwd": "../../src",
+      "bash": "bash -n dist/experiment_6_retriever.sh dist/experiment_6_no_adapter.sh dist/experiment_6_narratives.sh dist/experiment_6_api_key.sh dist/experiment_6_data_binding_evaluation.sh dist/experiment_7_in_context_selection.sh dist/experiment_7_generator_answer.sh dist/experiment_7_formal_tmux_run.sh dist/generator_no_api_key.sh dist/generator_api_key.sh dist/start_vllm_openai_server.sh dist/generator_runtime_profiles.sh",
+      "note": "Syntax-check current Experiment 6/7 shell entrypoints."
+    }
+  ],
+  "runtimeBlockers": [
+    "The exact canonical FinQA flan target file best_matched_with_retrieved_facts_and_questions_flan_promptpg.json is missing under src/Data_Target_Module/lora_flan_retriever/output, although nearby variants exist.",
+    "The exact canonical Apollo processed test CSV best_matched_with_retrieved_facts_and_questions_apollo_promptpg_processed_data_test.csv is missing under src/Data_Target_Module/Apollo/output, although nearby JSON variants exist.",
+    "The deleted active-repo FinFlier copy is not a runtime source; use docs/code/FinFlier/system as read-only reference material.",
+    "Official Mistral Small 4 direct loading may exceed local VRAM for unquantized execution; see src/mistral_codegen.py.",
+    "Formal Experiment 7 answer computation is blocked until GPT-5.5 selection_cache.json is supplied for the selected dataset/source mode.",
+    "Llama3.3 vLLM on this host needs repo-local flash_attn.ops shim and a long ready timeout; the observed first load required about 20.5 minutes.",
+    "Experiment 6 controlled metric scaffold can auto-build JSONL from data/src/narratives/narratives1.xlsx, but real model prediction JSONL remains pending."
+  ]
+}

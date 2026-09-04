@@ -1,0 +1,202 @@
+{
+  "name": "thesis-src-index",
+  "private": true,
+  "version": "0.7.2",
+  "generatedAt": "2026-06-12",
+  "workspace": {
+    "thesisRoot": "../..",
+    "docsRoot": "..",
+    "activeRepo": "../../src",
+    "activeEnv": "reed"
+  },
+  "authority": {
+    "policy": "../../AGENTS.md",
+    "repoPolicy": "../../src/AGENTS.md",
+    "parameterLedger": "../args.json",
+    "parameterNotes": "args-ledger-notes.md",
+    "structure": "../asset/folder_structure.md",
+    "logIndex": "../log/index.json"
+  },
+  "repos": [
+    {
+      "id": "finder-mistral",
+      "path": "../../src",
+      "role": "active_repo",
+      "writable": true,
+      "authority": "main thesis implementation repo"
+    },
+    {
+      "id": "finder",
+      "path": "../code/FINDER",
+      "role": "baseline_mirror",
+      "writable": false,
+      "authority": "primary comparable FINDER baseline mirror"
+    },
+    {
+      "id": "dyrren",
+      "path": "../code/DyRRen",
+      "role": "reference_repo",
+      "writable": false,
+      "authority": "reference baseline for FinQA retriever-reranker-generator workflows"
+    },
+    {
+      "id": "apollo",
+      "path": "../code/APOLLO",
+      "role": "reference_repo",
+      "writable": false,
+      "authority": "reference baseline for retriever and generator comparisons"
+    },
+    {
+      "id": "finqa",
+      "path": "../code/FinQA",
+      "role": "dataset_source",
+      "writable": false,
+      "authority": "dataset and source reference"
+    },
+    {
+      "id": "finflier",
+      "path": "../code/FinFlier",
+      "role": "reference_repo",
+      "writable": false,
+      "authority": "text-binding, overlay, and corpus reference repository"
+    },
+    {
+      "id": "data-finder",
+      "path": "../code/Data-FINDER",
+      "role": "dataset_source",
+      "writable": false,
+      "authority": "auxiliary FINDER-style prompt, retriever, and target-data bundle"
+    }
+  ],
+  "instructions": [
+    "args-ledger-notes.md"
+  ],
+  "tasks": [
+    {
+      "id": "finder-mistral-execution",
+      "repo": "../../src",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json",
+        "../code/FinFlier/system"
+      ],
+      "baselineRefs": [
+        "../code/FINDER",
+        "../code/Data-FINDER"
+      ],
+      "notes": "Use args.json before changing any runnable setting; only batch_size may be auto-adjusted without extra approval."
+    },
+    {
+      "id": "baseline-reference-lookup",
+      "repo": "../code",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../asset/folder_structure.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json",
+        "../code/FinFlier/system"
+      ],
+      "baselineRefs": [
+        "../code/FINDER",
+        "../code/DyRRen",
+        "../code/APOLLO",
+        "../code/FinQA",
+        "../code/Data-FINDER"
+      ],
+      "notes": "Use this task for comparable baseline, source bundle, and dataset registry lookup."
+    },
+    {
+      "id": "finflier-reference-lookup",
+      "repo": "../code/FinFlier",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../code/FinFlier/system",
+        "../code/FinFlier/system"
+      ],
+      "baselineRefs": [
+        "../code/FinFlier"
+      ],
+      "notes": "Use this task when the user asks where text-binding examples, sample payloads, or overlay assets live. The active-repo FinFlier copy was deliberately removed; use docs/code/FinFlier/system only as a read-only reference."
+    },
+    {
+      "id": "data-finder-lookup",
+      "repo": "../code/Data-FINDER",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../asset/folder_structure.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json",
+        "../code/FinFlier/system"
+      ],
+      "baselineRefs": [
+        "../code/Data-FINDER"
+      ],
+      "notes": "Use this task when the user asks where local FINDER-style retriever, prompt, or target data assets are stored."
+    },
+    {
+      "id": "workspace-governance-audit",
+      "repo": "../..",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../asset/folder_structure.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json",
+        "../code/FinFlier/system"
+      ],
+      "baselineRefs": [],
+      "notes": "Use this task for workspace-level consistency checks when instruction indexes, parameter-ledger references, or logging rules need reconciliation."
+    },
+    {
+      "id": "experiment-6-7-runtime-audit",
+      "repo": "../../src",
+      "authorityRefs": [
+        "../../AGENTS.md",
+        "../../src/AGENTS.md",
+        "../args.json",
+        "args-ledger-notes.md",
+        "../log/index.json"
+      ],
+      "baselineRefs": [
+        "../code/FINDER",
+        "../code/FinFlier"
+      ],
+      "notes": "Use this task for Experiment 6 data-binding and Experiment 7 two-stage generator runtime checks; canonical Mistral4 identity remains vLLM, llama.cpp is fallback evidence only."
+    }
+  ],
+  "blockers": [
+    {
+      "id": "finder-mistral-finqa-target-missing",
+      "detail": "The exact canonical FinQA flan target file expected at src/Data_Target_Module/lora_flan_retriever/output/best_matched_with_retrieved_facts_and_questions_flan_promptpg.json is still missing, although nearby variants exist."
+    },
+    {
+      "id": "finder-mistral-apollo-target-missing",
+      "detail": "The exact canonical Apollo processed test CSV expected at src/Data_Target_Module/Apollo/output/best_matched_with_retrieved_facts_and_questions_apollo_promptpg_processed_data_test.csv is still missing, although nearby JSON artifacts exist."
+    },
+    {
+      "id": "finflier-runtime-doc-partial",
+      "detail": "The deleted active-repo FinFlier copy is not a runtime source; use docs/code/FinFlier/system as a read-only reference and require a new implementation plus smoke evidence before any runnable claim."
+    },
+    {
+      "id": "future-baselines-unregistered",
+      "detail": "Future baselines such as FinQANet must be added under docs/code/<Name> and registered across governance files before use."
+    },
+    {
+      "id": "experiment7-formal-selection-cache-required",
+      "detail": "Formal Experiment 7 Target Answer Computation requires a completed GPT-5.5 selection_cache.json; similarity fallback is smoke-only."
+    },
+    {
+      "id": "local-llm-session-policy",
+      "detail": "vLLM, llama.cpp, and ChatMock should be started in tmux sessions named vllm, llama_cpp, and chatmock, then stopped or explicitly retained according to cleanup flags."
+    }
+  ]
+}
