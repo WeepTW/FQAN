@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 6,
+  "protocol": "experiment6-narrative2-reference-aligned-v5.1-corrected12",
+  "baseEvaluationConfig": {
+    "root": "repo",
+    "path": "config/experiment6_narrative2_evaluation.json"
+  },
+  "expectedRows": 85,
+  "expectedRuns": 10,
+  "expectedOfficialCases": 12,
+  "expectedFormalPredictions": 10200,
+  "judgeExamples": {
+    "root": "data",
+    "path": "src/narratives/1_full_used_data.xlsx",
+    "sheet": "Sheet1",
+    "expectedRows": 26,
+    "sha256": "4434ab358462e2b1de4eee24aec75ddf1a47855d2534fa734636ada65d5cd8fe",
+    "repairVersion": "experiment6-judge-examples-canonical-v4",
+    "promptFields": [
+      "ObjectName",
+      "Trend",
+      "Text"
+    ]
+  },
+  "evaluation": {
+    "evaluationBundle": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation"
+    },
+    "goldPath": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation/gold_targets.json"
+    },
+    "goldSha256": "f0f1b517fe5de280451b1273acf095118145ffadb3a4d339528dfc738240696b",
+    "fields": [
+      "ObjectName",
+      "DataName",
+      "Position",
+      "Trend",
+      "Num",
+      "Text"
+    ],
+    "hardFields": [
+      "DataName",
+      "Position"
+    ],
+    "semanticFields": [
+      "ObjectName",
+      "Trend",
+      "Text"
+    ],
+    "numericField": "Num",
+    "failurePolicy": "rejected-zero",
+    "bindingAlignment": "hard-anchor-one-to-one-local-field-penalty-v5.1",
+    "numericComparison": {
+      "absoluteTolerance": 1e-09,
+      "relativeTolerance": 1e-09,
+      "acceptedPredictionType": "finite-json-number-array",
+      "arrayMatching": "one-to-one",
+      "sensitivityOnly": {
+        "relativeTolerances": [
+          0.001,
+          0.005,
+          0.01
+        ],
+        "unitNormalization": [
+          "thousand",
+          "million",
+          "billion",
+          "trillion",
+          "percent",
+          "currency"
+        ]
+      }
+    },
+    "selection": {
+      "primary": "six-field-macro-f1",
+      "tieBreakers": [
+        "six-field-macro-precision",
+        "six-field-macro-recall",
+        "run-id-ascending"
+      ],
+      "topK": 3
+    },
+    "judge": {
+      "baseUrl": "http://localhost:8000/v1",
+      "apiKeyEnvironment": "CHATMOCK_API_KEY",
+      "defaultApiKey": "key",
+      "model": "gpt-5.5",
+      "reasoningEffort": "medium",
+      "minimumConfidence": 0.8,
+      "requireEvidenceSpans": true,
+      "blindCaseAndModel": true,
+      "randomizeAB": true,
+      "maxInputTokens": 65536,
+      "reservedRuntimeTokens": 8192,
+      "maxTokens": 4096,
+      "requestTimeoutSeconds": 300,
+      "maxAttempts": 3,
+      "retryDelaysSeconds": [
+        5,
+        15
+      ]
+    },
+    "audit": {
+      "sampleRate": 0.1,
+      "seed": 20260808,
+      "swapAB": true,
+      "thirdAdjudicationOnDisagreement": true,
+      "confidenceSensitivity": [
+        0.7,
+        0.8,
+        0.9
+      ]
+    }
+  }
+}

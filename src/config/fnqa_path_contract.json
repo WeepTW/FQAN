@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocol": "fnqa-path-contract-v1",
+  "condaEnv": "fnqa",
+  "resolver": {
+    "root": "dist",
+    "path": "experiment6_paths.py"
+  },
+  "roots": {
+    "workspace": ".",
+    "repo": "src",
+    "dist": "src/dist",
+    "docs": "docs",
+    "asset": "docs/asset",
+    "data": "data",
+    "log": "docs/log",
+    "code": "docs/code",
+    "utils": "utils",
+    "models": "utils/models",
+    "hf_home": "utils/models/.cache/huggingface"
+  },
+  "legacyPathMap": {
+    "FINDER-Mistral": "src",
+    "FINDER-Mistral/scripts": "src/dist",
+    "src/doc": "docs/asset",
+    "src": "docs",
+    "Models": "utils/models",
+    "local/llama.cpp": "utils/llama.cpp"
+  }
+}

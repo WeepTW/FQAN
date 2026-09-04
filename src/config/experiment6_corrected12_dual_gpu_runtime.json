@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "protocol": "experiment6-corrected12-dual-gpu-lpt-v1",
+  "devices": ["0", "1"],
+  "expectedCases": 12,
+  "expectedRuns": 10,
+  "feedbackUnit": "seed",
+  "initialEstimatedSeconds": {
+    "mistral": 7200,
+    "t5gemma2": 1800,
+    "flan": 500
+  },
+  "heartbeatSeconds": 300,
+  "stallWarningSeconds": 2700,
+  "maxJobAttempts": 2,
+  "failurePolicy": "retry-on-alternate-device-once-then-pause",
+  "modelSubstitution": false,
+  "allowInputTruncation": false
+}

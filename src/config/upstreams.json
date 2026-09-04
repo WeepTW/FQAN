@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "components": {
+    "finder": {
+      "url": "https://github.com/subhendukhatuya/FINDER_POT_Financial_Numeric_Reasoning.git",
+      "revision": "68b85b56d48a4294e35f706ad425a8002bdcdb93",
+      "destination": ".external/FINDER",
+      "redistribution": "not_redistributed_download_for_local_use"
+    },
+    "finflier": {
+      "url": "https://github.com/CatherineHao/FinFlier.git",
+      "revision": "3ffeb0963849e4010f21f67dd84ec0a461e1a878",
+      "destination": ".external/FinFlier",
+      "redistribution": "not_redistributed_download_for_local_use"
+    }
+  }
+}

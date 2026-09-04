@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 8,
+  "protocolId": "experiment6-reference-aligned-v6.0.2",
+  "protocolStatus": "version-comparison-unassigned-primary",
+  "expectedRows": 85,
+  "expectedRuns": 10,
+  "goldPath": "narrative/assets/evaluation/gold_targets.json",
+  "goldSha256": "f0f1b517fe5de280451b1273acf095118145ffadb3a4d339528dfc738240696b",
+  "primaryFields": [
+    "ObjectName",
+    "DataName",
+    "Position",
+    "Trend",
+    "Num"
+  ],
+  "secondaryFields": [
+    "Text"
+  ],
+  "alignment": {
+    "anchorFields": [
+      "DataName",
+      "Position"
+    ],
+    "algorithm": "maximum-cardinality-within-identical-anchor-groups",
+    "tieBreak": "gold-index-ascending-then-prediction-index-ascending",
+    "reportAmbiguity": true
+  },
+  "normalization": {
+    "unicode": "NFKC",
+    "whitespace": "trim-collapse",
+    "case": "casefold",
+    "unicodePunctuation": "equivalent-ascii-only",
+    "dataName": "normalized-strict-equality",
+    "position": "case-insensitive-keys-and-integer-strings-with-order-preserved",
+    "num": "one-number-per-Num-item-with-explicit-unit-compatibility"
+  },
+  "objectName": {
+    "dictionaryVersion": "experiment6-object-aliases-calibration26-v1",
+    "matching": "token-boundary-one-to-one-maximum-matching",
+    "aliases": {
+      "united states": [
+        "u.s.",
+        "u.s.a.",
+        "us",
+        "usa"
+      ],
+      "united kingdom": [
+        "u.k.",
+        "uk"
+      ],
+      "european union": [
+        "e.u.",
+        "eu"
+      ],
+      "gross domestic product": [
+        "g.d.p.",
+        "gdp"
+      ]
+    },
+    "constructionEvidence": [
+      "binding schema",
+      "26 frozen judge calibration rows",
+      "predeclared conservative abbreviation list"
+    ],
+    "predictionDerivedAliasesForbidden": true
+  },
+  "trend": {
+    "ontologyVersion": "finflier-five-patterns-plus-none-v1",
+    "classes": [
+      "head_and_shoulders",
+      "cup_and_handle",
+      "rounding_bottom",
+      "double_top",
+      "triple_top",
+      "none"
+    ],
+    "source": "https://github.com/CatherineHao/FinFlier/blob/main/system/Backend/app.py",
+    "sourceInterpretation": "FinFlier contains nine general examples plus five special-pattern examples and dispatches five special patterns; it does not define ten pattern classes.",
+    "aliases": {
+      "head_and_shoulders": [
+        "head and shoulders",
+        "head-and-shoulders",
+        "head & shoulders"
+      ],
+      "cup_and_handle": [
+        "cup and handle",
+        "cup-and-handle",
+        "cup & handle"
+      ],
+      "rounding_bottom": [
+        "rounding bottom",
+        "rounded bottom",
+        "round bottom"
+      ],
+      "double_top": [
+        "double top",
+        "double-top"
+      ],
+      "triple_top": [
+        "triple top",
+        "triple-top"
+      ]
+    },
+    "noneAliases": [
+      "",
+      "none",
+      "null",
+      "n/a",
+      "na",
+      "increase",
+      "increased",
+      "increases",
+      "inched up",
+      "rise",
+      "rises",
+      "rose",
+      "up",
+      "uptrend",
+      "expanded",
+      "decline",
+      "declined",
+      "declines",
+      "decrease",
+      "decreased",
+      "down",
+      "downtrend",
+      "lower",
+      "slipped",
+      "plunge",
+      "plunged",
+      "reversal",
+      "reversing",
+      "reversed",
+      "stable",
+      "unchanged",
+      "flat",
+      "trough",
+      "double bottom"
+    ],
+    "sentenceModel": {
+      "modelId": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "device": "cpu",
+      "similarity": "cosine",
+      "localFilesOnly": true,
+      "inferenceImplementation": "transformers-attention-mask_mean_pooling-and-l2-normalization",
+      "toolkitNote": "The sentence-transformers package import is blocked in fnqa by an incompatible TorchCodec/FFmpeg binary; the same frozen Sentence-BERT checkpoint is therefore encoded directly with Transformers on CPU."
+    },
+    "similarityThreshold": 0.80,
+    "thresholdStatus": "frozen-from-predeclared-calibration-set",
+    "prototypes": {
+      "head_and_shoulders": "a head and shoulders bearish reversal chart pattern",
+      "cup_and_handle": "a cup and handle bullish continuation chart pattern",
+      "rounding_bottom": "a rounding bottom saucer-shaped bullish reversal pattern",
+      "double_top": "a double top M-shaped bearish reversal pattern",
+      "triple_top": "a triple top three-peak bearish reversal pattern"
+    },
+    "calibration": {
+      "selectionMetric": "macro-f1-over-six-classes",
+      "candidateThresholds": [
+        0.50,
+        0.55,
+        0.60,
+        0.65,
+        0.70,
+        0.75,
+        0.80,
+        0.85,
+        0.90
+      ],
+      "tieBreak": "highest-threshold",
+      "positiveSource": "five FinFlier special examples plus predeclared paraphrases",
+      "negativeSource": "ordinary directional terms from frozen gold vocabulary",
+      "fixtureCount": 19,
+      "fixtureSha256": "489b1ccec523e7582dc19bf24a70c19a193e633c10183d0a9ad668e14d74451d",
+      "selectedMacroF1": 0.5450980392156862,
+      "testPredictionTuningForbidden": true
+    }
+  },
+  "textJudge": {
+    "role": "secondary-quality-evidence-only",
+    "anchorCase": "6_FinFlier_flan_base",
+    "anchorLabel": "flan_raw",
+    "model": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "randomizePresentationOrder": true,
+    "blindCaseAndModel": true,
+    "dimensions": [
+      "factual_consistency",
+      "natural_fluency"
+    ],
+    "scoreRange": [
+      0,
+      100
+    ],
+    "normalization": "clip(100 * (prediction - flan_raw) / (gold - flan_raw), 0, 100)",
+    "undefinedPolicy": "NA-if-gold-less-than-or-equal-to-anchor-or-any-score-nonfinite",
+    "systemPrompt": "You are a blinded evaluator of financial narrative text. Given source evidence and two or three anonymized texts, score each text independently on factual_consistency and natural_fluency from 0 to 100. Factual consistency requires every entity, number, unit, time, scope, comparison and trend to be supported by the source evidence; unsupported additions lower the score. Natural fluency measures grammaticality, coherence and readability without rewarding unsupported content. Return JSON only: {\"items\":[{\"label\":\"A\",\"factual_consistency\":0,\"natural_fluency\":0,\"reason\":\"concise evidence-based reason\"}]}. Include exactly one item for every presented label and no case or model guesses.",
+    "systemPromptSha256": "8803d9c86592b5fddefcbabf8d562cccc3d421b2231713402b20e50d23715fb9"
+  },
+  "counting": {
+    "alignedCorrectField": "TP",
+    "alignedPresentWrongOrInvalidField": "FP+FN",
+    "alignedMissingField": "FN",
+    "unmatchedGoldBinding": "FN-per-primary-field-and-binding-level-FN",
+    "unmatchedPredictionBinding": "FP-for-each-present-primary-field-and-binding-level-FP",
+    "unparseableNonemptyBinding": "binding-level-FP",
+    "unparseableNonemptyRawResponse": "one-binding-level-FP-per-row-without-field-level-FP",
+    "emptyOutput": "retain-all-gold-FN",
+    "zeroDenominator": "NA"
+  },
+  "aggregation": {
+    "rankingFields": [
+      "ObjectName",
+      "DataName",
+      "Position",
+      "Trend",
+      "Num"
+    ],
+    "commonRunOrder": [
+      "macro-f1-descending",
+      "macro-precision-descending",
+      "macro-recall-descending",
+      "run-id-ascending"
+    ],
+    "topK": 3,
+    "formalExpectedRuns": 10,
+    "sampleSd": true,
+    "confidenceLevel": 0.95,
+    "studentTCriticalForTenRuns": 2.2621571628540993,
+    "bootstrapReplicates": 10000,
+    "bootstrapSeed": 20260814,
+    "topResultsRole": "descriptive-only"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "materializationProtocol": "experiment6-binding-materialization-v2-unified34",
+  "safeRepairPolicy": "wrapper-and-objectname-shape-only-v1",
+  "expectedCases": 34,
+  "expectedRuns": 10,
+  "expectedRows": 85,
+  "requiredBindingKeys": [
+    "ObjectName",
+    "DataName",
+    "Position",
+    "Trend",
+    "Num",
+    "Text"
+  ],
+  "sourceGroups": [
+    {
+      "name": "corrected12",
+      "sourceProtocol": "experiment6-narrative2-generation-v5-corrected12",
+      "sourceCompatibilityFingerprint": "489e63c3bd932b870eb481cedb89ee2318d4170be0604c4d7232dd2769a9e30e",
+      "requireRepairCoverage": true,
+      "caseIds": [
+        "6_FinFlier_flan_base",
+        "6_FinFlier_mistral_base",
+        "6_FinFlier_t5gemma2_base",
+        "6_flan_base_d",
+        "6_flan_base_m",
+        "6_flan_base_z",
+        "6_mistral_base_d",
+        "6_mistral_base_m",
+        "6_mistral_base_z",
+        "6_t5gemma2_base_d",
+        "6_t5gemma2_base_m",
+        "6_t5gemma2_base_z"
+      ]
+    },
+    {
+      "name": "historical22",
+      "sourceProtocol": "experiment6-narrative2-generation-v4-38case",
+      "sourceCompatibilityFingerprint": null,
+      "requireRepairCoverage": false,
+      "caseIds": [
+        "6_FinFlier_flan_d",
+        "6_FinFlier_flan_m",
+        "6_FinFlier_flan_z",
+        "6_FinFlier_gpt5.5",
+        "6_FinFlier_mistral_d",
+        "6_FinFlier_mistral_m",
+        "6_FinFlier_mistral_z",
+        "6_FinFlier_t5gemma2_d",
+        "6_FinFlier_t5gemma2_m",
+        "6_FinFlier_t5gemma2_z",
+        "6_flan_d",
+        "6_flan_m",
+        "6_flan_z",
+        "6_gpt5.5_d",
+        "6_gpt5.5_m",
+        "6_gpt5.5_z",
+        "6_mistral_d",
+        "6_mistral_m",
+        "6_mistral_z",
+        "6_t5gemma2_d",
+        "6_t5gemma2_m",
+        "6_t5gemma2_z"
+      ]
+    }
+  ],
+  "protocolId": "experiment6-binding-candidate-evaluation-v1",
+  "acceptedCandidateProtocol": "experiment6-binding-materialization-v2-unified34",
+  "expectedCandidateCases": 34,
+  "expectedMergedCases": 34,
+  "claimEligible": false,
+  "selectionRole": "diagnostic-descriptive-only",
+  "textJudge": "disabled",
+  "lowScoreThreshold": 0.1,
+  "scoringVersions": {
+    "v6.0.1": "config/experiment6_narrative2_evaluation_v6.json",
+    "v6.0.2": "config/experiment6_narrative2_evaluation_v6_0_2.json"
+  },
+  "missingMatrixCaseIds": [
+    "6_FinFlier_gpt4.1",
+    "6_gpt4.1_z",
+    "6_gpt4.1_m",
+    "6_gpt4.1_d"
+  ]
+}

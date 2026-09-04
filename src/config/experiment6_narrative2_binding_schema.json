@@ -1,0 +1,85 @@
+{
+  "name": "experiment6_narrative2_binding_v2",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "result",
+      "reason"
+    ],
+    "properties": {
+      "result": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ObjectName",
+            "DataName",
+            "Position",
+            "Trend",
+            "Num",
+            "Text"
+          ],
+          "properties": {
+            "ObjectName": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            },
+            "DataName": {
+              "type": "string"
+            },
+            "Position": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "Begin",
+                  "End"
+                ],
+                "properties": {
+                  "Begin": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "End": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "Trend": {
+              "type": "string"
+            },
+            "Num": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "Text": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "reason": {
+        "type": "string"
+      }
+    }
+  }
+}

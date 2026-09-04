@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "protocol": "experiment6-source-registry-v1",
+  "pathContract": "logical-root-relative-v1",
+  "assets": {
+    "generationBundleManifest": {
+      "root": "repo",
+      "path": "narrative/assets/generation/bundle_manifest.json",
+      "sha256": "855dd9ffa0ca6599a22e7d221d83456883fbe911c03f17654f8c6d785006bfab",
+      "stage": "generation"
+    },
+    "inputWorkbook": {
+      "root": "repo",
+      "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+      "sheet": "label_input",
+      "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d",
+      "stage": "generation"
+    },
+    "finflierPrompt": {
+      "root": "repo",
+      "path": "narrative/assets/generation/finflier_prompt_v1.json",
+      "sha256": "948de4863d1a3901c82682b81875aa848b20e03efeff41c2274feb1dc04a5051",
+      "stage": "generation"
+    },
+    "promptExamples": {
+      "root": "data",
+      "path": "src/full_example.csv",
+      "sha256": "f867597ac9462109bc612de7d6b2db65f2eaef3edc0520f2be6f183f4e3c9546",
+      "stage": "generation"
+    },
+    "bindingSchema": {
+      "root": "repo",
+      "path": "config/experiment6_narrative2_binding_schema.json",
+      "sha256": "3e6f35ac2e756b1910ed76b35e0d500b2f369ce94b77faba49a22e2204a78c2f",
+      "stage": "generation"
+    },
+    "sourceWorkbook": {
+      "root": "data",
+      "path": "src/narratives/narrative2.xlsx",
+      "sheet": "label",
+      "sha256": "aa98ad33a2c30bcf9e02225fd01b3a4f13b3c3fb533083cf4b04b15cca1db9a3",
+      "stage": "provenance-only"
+    },
+    "evaluationBundleManifest": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation/bundle_manifest.json",
+      "sha256": "f26d67d605115ff6b3e751755a83bf60f1e810923c0fecb4b9e4b630c04b3a4e",
+      "stage": "evaluation"
+    },
+    "goldTargets": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation/gold_targets.json",
+      "sha256": "f0f1b517fe5de280451b1273acf095118145ffadb3a4d339528dfc738240696b",
+      "stage": "evaluation"
+    },
+    "judgeExampleWorkbook": {
+      "root": "data",
+      "path": "src/narratives/1_full_used_data.xlsx",
+      "sha256": "4434ab358462e2b1de4eee24aec75ddf1a47855d2534fa734636ada65d5cd8fe",
+      "stage": "evaluation"
+    }
+  },
+  "trainingData": {
+    "zero-shot": {
+      "train": {
+        "root": "data",
+        "path": "finqa_zero_shot/finqa_train_rel_fact_instruction.csv",
+        "sha256": "1dda6470fc1088bf4ec66f6ada6e240eadb018e9eb6aed36f0a743ddc7492077"
+      },
+      "dev": {
+        "root": "data",
+        "path": "finqa_zero_shot/finqa_dev_rel_fact_instruction.csv",
+        "sha256": "572fd52f3bfb0e80f305d270807f3f82273ddb4675652ad5a6c4b647d477d8cc"
+      },
+      "test": {
+        "root": "data",
+        "path": "finqa_zero_shot/finqa_test_rel_fact_instruction.csv",
+        "sha256": "8c334ae5d86f914a4ab214c05b1da32c40174cd5d3eebfc6b58989d51e45931b"
+      }
+    },
+    "many-shot": {
+      "train": {
+        "root": "data",
+        "path": "finqa_many_shot/finqa_train_rel_fact_instruction.csv",
+        "sha256": "7f7a357f109c4143eccd9c23833f60aa7486d88e14fe6ad5ac0ff2a06d70cf58"
+      },
+      "dev": {
+        "root": "data",
+        "path": "finqa_many_shot/finqa_dev_rel_fact_instruction.csv",
+        "sha256": "97cd7f213af9d986b56434518e04d7860ae4271f6fe512dbb00955ee490943de"
+      },
+      "test": {
+        "root": "data",
+        "path": "finqa_many_shot/finqa_test_rel_fact_instruction.csv",
+        "sha256": "9516fdc6384d76e940ce72e6b42336f2b2c01a1bff13df3b402c0d027a2fbb08"
+      }
+    },
+    "dynamic-shot": {
+      "train": {
+        "root": "data",
+        "path": "finqa_dynamic_shot/finqa_train_rel_fact_instruction.csv",
+        "sha256": "480d6957fe7277f9b639249e1c330a01f26fdb7ba9911d4073adce470dc5f3b4"
+      },
+      "dev": {
+        "root": "data",
+        "path": "finqa_dynamic_shot/finqa_dev_rel_fact_instruction.csv",
+        "sha256": "f1225552d3ac6a85f98a315f5473eaa686385ec9d57cbf6128134bfa401dbd9f"
+      },
+      "test": {
+        "root": "data",
+        "path": "finqa_dynamic_shot/finqa_test_rel_fact_instruction.csv",
+        "sha256": "b81af134c5736981de270bb088904203c6b04f36ca4cfc355d53801468c5e0c7"
+      }
+    }
+  },
+  "sources": {
+    "flan_t5_large": {
+      "kind": "base",
+      "family": "flan",
+      "baseModel": "google/flan-t5-large",
+      "formalRoute": "direct-binding"
+    },
+    "mistral_v0_3": {
+      "kind": "base",
+      "family": "mistral",
+      "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+      "formalRoute": "direct-binding"
+    },
+    "t5gemma_2_1b_1b": {
+      "kind": "base",
+      "family": "t5gemma2",
+      "baseModel": "google/t5gemma-2-1b-1b",
+      "formalRoute": "direct-binding"
+    },
+    "finqa_flan_z": {
+      "kind": "adapter",
+      "family": "flan",
+      "baseModel": "google/flan-t5-large",
+      "formalRoute": "adapter-converter",
+      "promptMode": "zero-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_flan_z/retriever/model",
+        "configSha256": "680286cb8f775e5a9560512cf0a0ba89ada06764499ca18dc072923357b436dd",
+        "weightsSha256": "9720d430970614f3dca4912c680f17766a1899df9a78d17c46070041eb679f9f"
+      }
+    },
+    "finqa_flan_m": {
+      "kind": "adapter",
+      "family": "flan",
+      "baseModel": "google/flan-t5-large",
+      "formalRoute": "adapter-converter",
+      "promptMode": "many-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_flan_m/retriever/model",
+        "configSha256": "680286cb8f775e5a9560512cf0a0ba89ada06764499ca18dc072923357b436dd",
+        "weightsSha256": "5b8d36b4ea8847ac916ce6108fe579008846fea11470b1c9a8b80f68458a7232"
+      }
+    },
+    "finqa_flan_d": {
+      "kind": "adapter",
+      "family": "flan",
+      "baseModel": "google/flan-t5-large",
+      "formalRoute": "adapter-converter",
+      "promptMode": "dynamic-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_flan_d/retriever/model",
+        "configSha256": "680286cb8f775e5a9560512cf0a0ba89ada06764499ca18dc072923357b436dd",
+        "weightsSha256": "6e07a11786bc59a36437b659b09a2680c82dc2794a33db8a0832de6395cdcd46"
+      }
+    },
+    "finqa_mistral_z": {
+      "kind": "adapter",
+      "family": "mistral",
+      "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+      "formalRoute": "adapter-converter",
+      "promptMode": "zero-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_mistral_z/retriever/model",
+        "configSha256": "be0f352c72a99d5f5ca706e97284f83a17ba6f8efbe77057d52209b6e6b24c89",
+        "weightsSha256": "828cc7dda521fd891d023bd9ffdd5cefcd5fffff14b602d1c9e1f58f6a002d24"
+      }
+    },
+    "finqa_mistral_m": {
+      "kind": "adapter",
+      "family": "mistral",
+      "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+      "formalRoute": "adapter-converter",
+      "promptMode": "many-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_mistral_m/retriever/model",
+        "configSha256": "be0f352c72a99d5f5ca706e97284f83a17ba6f8efbe77057d52209b6e6b24c89",
+        "weightsSha256": "949bc4fddbdebb12f674aa96115057085b56872b71901cd074d569af9d425d62"
+      }
+    },
+    "finqa_mistral_d": {
+      "kind": "adapter",
+      "family": "mistral",
+      "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+      "formalRoute": "adapter-converter",
+      "promptMode": "dynamic-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_mistral_d/retriever/model",
+        "configSha256": "2bc001098ecf7b9d6209de40a112a545d9d7f02c5b9b8c2d7116cbbeb8d0672a",
+        "weightsSha256": "2d413ac81bba543e3a2cd83dcaf072ff7f7fb0485ad08eb6f0a01102f9c7377c"
+      }
+    },
+    "finqa_t5gemma2_z": {
+      "kind": "adapter",
+      "family": "t5gemma2",
+      "baseModel": "google/t5gemma-2-1b-1b",
+      "formalRoute": "adapter-converter",
+      "promptMode": "zero-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_t5gemma2_z/retriever/model",
+        "configSha256": "7c15df448907bf097514dfc04aed1faa9c686766ebd2a8ea69c0be8176fb397e",
+        "weightsSha256": "50c699a28a4093bb2b5688f9a04eb8b73456db61867a133adbb0cf3fd36a6df3"
+      }
+    },
+    "finqa_t5gemma2_m": {
+      "kind": "adapter",
+      "family": "t5gemma2",
+      "baseModel": "google/t5gemma-2-1b-1b",
+      "formalRoute": "adapter-converter",
+      "promptMode": "many-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_t5gemma2_m/retriever/model",
+        "configSha256": "b9a03d887c85aea6c04cbcf0105912a87efc3ebe508bc82f33c9b830ec1e23c2",
+        "weightsSha256": "366ecbaf26756379f9ab45249803eb8b4c5473a3b8344cccea2fc0e91968cb85"
+      }
+    },
+    "finqa_t5gemma2_d": {
+      "kind": "adapter",
+      "family": "t5gemma2",
+      "baseModel": "google/t5gemma-2-1b-1b",
+      "formalRoute": "adapter-converter",
+      "promptMode": "dynamic-shot",
+      "adapter": {
+        "root": "repo",
+        "path": "Experiment/finqa_t5gemma2_d/retriever/model",
+        "configSha256": "fc8895e09e8724accdb39c40fcc55cadf60627d437704ee10ab0240bf6886042",
+        "weightsSha256": "a7ef90f60f25e0b87a7b134baaa5b656487c39cf76c44dac3c38c1524c880b48"
+      }
+    },
+    "gpt5_5": {
+      "kind": "external",
+      "family": "chatmock",
+      "baseModel": "gpt-5.5",
+      "actualModelRequired": "gpt-5.5",
+      "reasoningEffort": "medium",
+      "formalRoute": "direct-binding"
+    },
+    "gpt4_1": {
+      "kind": "external",
+      "family": "azure-openai",
+      "baseModel": "gpt-4.1",
+      "formalRoute": "direct-binding",
+      "allowSubstitution": false
+    },
+    "gpt5_3_codexS": {
+      "kind": "external",
+      "family": "chatmock",
+      "baseModel": "gpt-5.3-CodexS",
+      "formalRoute": "direct-binding",
+      "legacyDiagnosticOnly": true
+    },
+    "qwen3_6": {
+      "kind": "local-runtime",
+      "family": "qwen",
+      "baseModel": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "formalRoute": "direct-binding",
+      "legacyDiagnosticOnly": true
+    },
+    "llama4": {
+      "kind": "local-runtime",
+      "family": "llama",
+      "baseModel": "RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16",
+      "formalRoute": "direct-binding",
+      "legacyDiagnosticOnly": true
+    },
+    "mistral4": {
+      "kind": "local-runtime",
+      "family": "mistral4",
+      "baseModel": "Mistral-Small-4-119B-2603-UD-Q4_K_M",
+      "formalRoute": "direct-binding",
+      "legacyDiagnosticOnly": true
+    },
+    "blank_candidate": {
+      "kind": "control",
+      "family": "none",
+      "formalRoute": "converter-control"
+    }
+  }
+}

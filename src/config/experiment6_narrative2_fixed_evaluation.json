@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "protocol": "narrative2-fixed-python-v2",
+  "evaluationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/evaluation"
+  },
+  "evaluationBundleManifestSha256": "f26d67d605115ff6b3e751755a83bf60f1e810923c0fecb4b9e4b630c04b3a4e",
+  "referenceEvaluator": {
+    "root": "repo",
+    "path": "narrative/assets/evaluation/evaluate_narrative2_annotations.py"
+  },
+  "referenceEvaluatorSha256": "21ac856a03016018f3a4a6804f6c1d57db346d47fb30937b917742e0ddfb3824",
+  "goldPath": {
+    "root": "repo",
+    "path": "narrative/assets/evaluation/gold_targets.json"
+  },
+  "goldSha256": "f0f1b517fe5de280451b1273acf095118145ffadb3a4d339528dfc738240696b",
+  "trendVocabularyPath": {
+    "root": "repo",
+    "path": "narrative/assets/evaluation/trend_vocabulary.json"
+  },
+  "trendVocabularySha256": "2a70de4f288683f00768d775f5858caec90fd877b83c8a5bd06bef28576f2e0a",
+  "sourceWorkbook": {
+    "root": "data",
+    "path": "src/narratives/narrative2.xlsx"
+  },
+  "sourceWorkbookSha256": "aa98ad33a2c30bcf9e02225fd01b3a4f13b3c3fb533083cf4b04b15cca1db9a3",
+  "expectedRows": 85,
+  "expectedBindingsPerRun": 173,
+  "expectedOfficialCases": 54,
+  "expectedDiagnosticCases": 4,
+  "expectedRuns": 10,
+  "topK": 3,
+  "targetThreshold": {
+    "operator": ">",
+    "rate": 0.8,
+    "minimumPassesForTenRuns": 9
+  },
+  "rejectedPolicy": "zero_target_binding_fields",
+  "primaryMetric": "allFieldsCombined.f1",
+  "rankingMetric": "all_10.allFieldsCombined.f1.mean",
+  "fields": [
+    "ObjectName",
+    "DataName",
+    "Position",
+    "Trend",
+    "Num",
+    "Text"
+  ],
+  "legacyFields": [
+    "ObjectName",
+    "Trend",
+    "Num"
+  ]
+}

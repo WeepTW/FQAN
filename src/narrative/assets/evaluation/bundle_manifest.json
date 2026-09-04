@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T19:57:45.538501Z",
+  "directory": "evaluation_bundle",
+  "files": [
+    {
+      "path": "evaluate_narrative2_annotations.py",
+      "bytes": 36467,
+      "sha256": "21ac856a03016018f3a4a6804f6c1d57db346d47fb30937b917742e0ddfb3824"
+    },
+    {
+      "path": "EVALUATION_GOAL_PROMPT.txt",
+      "bytes": 1252,
+      "sha256": "19ad6d22a7d64ac0966e33515c8a231e783b65c08e7391c71bb98d7dce1c05db"
+    },
+    {
+      "path": "gold_targets.json",
+      "bytes": 219577,
+      "sha256": "be468ea4507aab0d3d9f66b706a43f801b0192d6d2b2ba6c97295bfc47dfa1b0"
+    },
+    {
+      "path": "predictions.template.jsonl",
+      "bytes": 294,
+      "sha256": "51c82b7305e6dbd2bbe0b99f9660f8ee1e240aa0e0af3596f94743a33160ec60"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1031,
+      "sha256": "d01110f81a88d139b6ac5a09751d57cfa2f18aca45bcd13c7345dcb718de5b7c"
+    },
+    {
+      "path": "trend_vocabulary.json",
+      "bytes": 1010,
+      "sha256": "2a70de4f288683f00768d775f5858caec90fd877b83c8a5bd06bef28576f2e0a"
+    }
+  ]
+}

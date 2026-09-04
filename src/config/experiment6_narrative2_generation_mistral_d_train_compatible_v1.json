@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 6,
+  "protocol": "experiment6-narrative2-generation-v5-corrected12",
+  "inputType": "type",
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  },
+  "generationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/generation"
+  },
+  "inputWorkbook": {
+    "root": "repo",
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 1,
+  "expectedDiagnosticCases": 0,
+  "expectedPartCounts": {
+    "1": 1
+  },
+  "expectedFormalPredictions": 850,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v2",
+    "chartNormalizationContract": "strict-json-plus-quoted-bare-percentage-v1",
+    "bindingValueAnchorContract": "measured-series-cell-not-axis-label-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ],
+    "promptPolicyVersion": "narrative2-binding-prompt-v4+mistral-d-training-corpus-v1+narrative-question-v1+narrative-only-v1+target-last-full-nearest-v1+compact-retfact-json-v1+completion512",
+    "positionIndexContract": "original-data-zero-based-excluding-synthetic-row-v1",
+    "dataNameContract": "exact-case-sensitive-original-header-v1"
+  },
+  "parts": [
+    {
+      "part": 1,
+      "name": "mistral-d-existing-adapter-train-compatible",
+      "route": "adapter-converter",
+      "cases": [
+        {
+          "outputId": "6_mistral_d",
+          "sourceId": "finqa_mistral_d",
+          "promptMode": "dynamic-shot"
+        }
+      ]
+    }
+  ],
+  "controls": [],
+  "retriever": {
+    "batchSize": 1,
+    "familyBatchSizes": {
+      "mistral": 1
+    },
+    "maxInputTokens": 8192,
+    "maxNewTokens": 512,
+    "structuredOutput": "canonical",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "0",
+    "familyCudaVisibleDevices": {
+      "mistral": "0"
+    },
+    "tokenizers": {
+      "mistral": "mistralai/Mistral-7B-Instruct-v0.3"
+    },
+    "generationCache": {},
+    "retry": {
+      "maxAttempts": 1,
+      "retryDelaysSeconds": []
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "mistral": "greedy-deterministic-existing-adapter-training-prefix-v1"
+    },
+    "scheduler": {
+      "policy": "isolated-mistral-d-native-gpu-lock-v1",
+      "familyWorkers": 1,
+      "gpuLockNamespace": "experiment6_mistral_d_train_compatible_v1",
+      "converterOverlap": false,
+      "familyShards": {
+        "mistral": [
+          [
+            "6_mistral_d"
+          ]
+        ]
+      }
+    }
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 600,
+    "parallelism": 1,
+    "maxAttempts": 3,
+    "maxInputTokens": 8192,
+    "localContextTokens": 12288,
+    "tokenizers": {}
+  },
+  "mistralDynamicAdapterPrompt": {
+    "policy": "finqa-dynamic-adapter-target-last-full-nearest-v1",
+    "targetPromptFormat": "finqa-dynamic-training-corpus-v1",
+    "targetQuestionPolicy": "narrative-as-question-v1",
+    "targetContextPolicy": "narrative-only-v1",
+    "placementPolicy": "target-last-full-nearest-v1",
+    "exampleFormatPolicy": "compact-retfact-json-v1",
+    "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+    "labelMarker": "##Label Descriptions:",
+    "trainMaxSequenceTokens": 2048,
+    "completionReserveTokens": 512,
+    "contextWindowTokens": 8192,
+    "preserveTargetOverBudget": true,
+    "reverseSelectedExamples": true,
+    "wrapper": {
+      "root": "dist",
+      "path": "run_experiment6_mistral_d_train_compatible_v1.py",
+      "sha256": "6c05b58174cd8957a5f2f09f59bc596bce578db52b3f6741df514d60fee8ae9e"
+    },
+    "promptPolicy": {
+      "root": "repo",
+      "path": ".external/FINDER/Retriever Codes/Mistral/mistral_dynamic_adapter_prompt.py",
+      "sha256": "b66247ff181f2bc258797a72548631f5a884ccade14a93ec553f64651b49aeb7"
+    },
+    "trainingPromptCorpus": {
+      "root": "data",
+      "path": "finqa_dynamic_shot/finqa_train_rel_fact_instruction.csv",
+      "sha256": "480d6957fe7277f9b639249e1c330a01f26fdb7ba9911d4073adce470dc5f3b4"
+    },
+    "runnerBase": {
+      "root": "dist",
+      "path": "run_experiment6_narrative2_generation.py",
+      "sha256": "b8b22996a53c3db77176ad2bf2510ad965718414f2aa671c009c1d6c048ea78c"
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {}
+}

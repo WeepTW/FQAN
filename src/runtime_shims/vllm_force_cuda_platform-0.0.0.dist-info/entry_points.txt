@@ -1,0 +1,2 @@
+[vllm.platform_plugins]
+vllm_force_cuda_platform = vllm_force_cuda_platform:vllm_force_cuda_platform

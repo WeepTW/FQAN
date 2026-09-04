@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 5,
+  "protocol": "experiment6-narrative2-generation-v5-corrected12",
+  "inputType": "type",
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  },
+  "generationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/generation"
+  },
+  "inputWorkbook": {
+    "root": "repo",
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 2,
+  "expectedDiagnosticCases": 0,
+  "expectedPartCounts": {
+    "2": 2
+  },
+  "expectedFormalPredictions": 1700,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v2",
+    "chartNormalizationContract": "strict-json-plus-quoted-bare-percentage-v1",
+    "bindingValueAnchorContract": "measured-series-cell-not-axis-label-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ],
+    "promptPolicyVersion": "narrative2-binding-prompt-v4+mistral-native-chat-template-v2",
+    "positionIndexContract": "original-data-zero-based-excluding-synthetic-row-v1",
+    "dataNameContract": "exact-case-sensitive-original-header-v1"
+  },
+  "parts": [
+    {
+      "part": 2,
+      "name": "mistral-base-md-native-chat-template-diagnostic",
+      "route": "direct-binding",
+      "models": [
+        {
+          "outputStem": "6_mistral_base",
+          "sourceId": "mistral_v0_3"
+        }
+      ],
+      "promptModes": [
+        "many-shot",
+        "dynamic-shot"
+      ]
+    }
+  ],
+  "controls": [],
+  "retriever": {
+    "batchSize": 1,
+    "familyBatchSizes": {
+      "mistral": 6
+    },
+    "maxInputTokens": 8192,
+    "maxNewTokens": 128,
+    "structuredOutput": "off",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "0",
+    "familyCudaVisibleDevices": {
+      "mistral": "0"
+    },
+    "tokenizers": {
+      "mistral": "mistralai/Mistral-7B-Instruct-v0.3"
+    },
+    "generationCache": {},
+    "retry": {
+      "maxAttempts": 1,
+      "retryDelaysSeconds": []
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "mistral": "greedy-deterministic-native-chat-template-seed-recorded"
+    },
+    "scheduler": {
+      "policy": "isolated-native-gpu-lock-v1",
+      "gpuLockNamespace": "experiment6_mistral_base_md_chat_template_v5",
+      "converterOverlap": false
+    }
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 600,
+    "parallelism": 1,
+    "maxAttempts": 3,
+    "maxInputTokens": 8192,
+    "localContextTokens": 12288,
+    "tokenizers": {}
+  },
+  "mistralDirectChatTemplate": {
+    "policy": "native-user-message-target-last-answer-boundary-v3",
+    "baseModel": "mistralai/Mistral-7B-Instruct-v0.3",
+    "chatTemplateBytes": 3959,
+    "chatTemplateSha256": "e16746b40344d6c5b5265988e0328a0bf7277be86f1c335156eae07e29c82826",
+    "contextWindow": 12288,
+    "wrapper": {
+      "root": "dist",
+      "path": "run_experiment6_mistral_base_md_chat_template_v5.py",
+      "sha256": "fec8dfcae5c539bd2a60747d2e2744f3e20a9a638df4787e2762f88b887459ff"
+    },
+    "wrapperBase": {
+      "root": "dist",
+      "path": "run_experiment6_mistral_base_md_chat_template_v2.py",
+      "sha256": "2f6dd97e7734d2e90d8f917d39cfa68084b8ce642da5332e4d448743f8ca278f"
+    },
+    "inference": {
+      "root": "repo",
+      "path": ".external/FINDER/Retriever Codes/Mistral/mistral_direct_binding_chat_inference_v4.py",
+      "sha256": "14ee44a1681646546c704f461f03305b1684dcbe6f9a5a7df008e7c1b78fe088"
+    },
+    "inferenceBase": {
+      "root": "repo",
+      "path": ".external/FINDER/Retriever Codes/Mistral/mistral_direct_binding_chat_inference.py",
+      "sha256": "aeb6d7e150c36bb3046edd83bb2d96ef30651b24a5d61622ef768d2e2cdd539f"
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {}
+}

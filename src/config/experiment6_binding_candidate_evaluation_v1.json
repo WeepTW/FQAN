@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "protocolId": "experiment6-binding-candidate-evaluation-v1",
+  "acceptedCandidateProtocol": "experiment6-binding-candidate-materialization-v1",
+  "expectedCandidateCases": 12,
+  "expectedMergedCases": 34,
+  "expectedRuns": 10,
+  "expectedRows": 85,
+  "claimEligible": false,
+  "selectionRole": "diagnostic-descriptive-only",
+  "textJudge": "disabled",
+  "lowScoreThreshold": 0.1,
+  "scoringVersions": {
+    "v6.0.1": "config/experiment6_narrative2_evaluation_v6.json",
+    "v6.0.2": "config/experiment6_narrative2_evaluation_v6_0_2.json"
+  },
+  "missingMatrixCaseIds": [
+    "6_FinFlier_gpt4.1",
+    "6_gpt4.1_z",
+    "6_gpt4.1_m",
+    "6_gpt4.1_d"
+  ]
+}

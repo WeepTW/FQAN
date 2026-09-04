@@ -1,0 +1,43 @@
+# Retriever and Data-Binding Prompt
+
+This prompt applies to the optional FQAN narrative modes. The original FINDER
+mode continues to use its upstream retriever instruction and plain relevant-fact
+labels.
+
+## Instruction
+
+Read the financial context and question. Select the facts needed to answer the
+question, then connect each selected statement to its structured data position.
+
+## Input
+
+Context: {context}
+Question: {question}
+
+## Output
+
+Return one valid JSON object with this structure:
+
+{
+  "RetFact": "",
+  "Binding": [
+    {
+      "ObjectName": [],
+      "DataName": "",
+      "Position": [{"Begin": [], "End": []}],
+      "Trend": "None",
+      "Num": [],
+      "Text": ""
+    }
+  ],
+  "Reason": ""
+}
+
+`RetFact` contains the selected evidence. `Binding` records the entities,
+measure, source position, direction, numbers, and supporting statement.
+`Reason` briefly explains why the evidence answers the question.
+
+Zero-shot mode supplies no examples. Many-shot and dynamic-shot modes require the companion example set described in
+`data/README.md`. Many-shot mode uses a fixed selection; dynamic-shot mode orders
+examples by semantic similarity. Example selection changes the prompt context but
+not the output schema.

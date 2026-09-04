@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "protocolId": "experiment6-binding-candidate-evaluation-v1",
+  "acceptedCandidateProtocol": "experiment6-binding-candidate-materialization-v1",
+  "expectedCandidateCases": 3,
+  "expectedMergedCases": 3,
+  "expectedRuns": 10,
+  "expectedRows": 85,
+  "claimEligible": false,
+  "selectionRole": "diagnostic-descriptive-only",
+  "textJudge": "disabled",
+  "lowScoreThreshold": 0.1,
+  "scoringVersions": {
+    "v6.0.1": "config/experiment6_narrative2_evaluation_v6.json",
+    "v6.0.2": "config/experiment6_narrative2_evaluation_v6_0_2.json",
+    "v6.1.0": "config/experiment6_narrative2_evaluation_v6_1.json"
+  },
+  "missingMatrixCaseIds": [
+    "all formal Experiment 6 cases; this root contains three fine-tuned FLAN (z/m/d adapters) with FinFlier long-context prompts, an exploratory non-canonical diagnostic scope"
+  ]
+}

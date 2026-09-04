@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "protocol": "experiment6-binding-candidate-materialization-v1",
+  "sourceProtocol": "experiment6-narrative2-generation-v5-corrected12",
+  "sourceCompatibilityFingerprint": "489e63c3bd932b870eb481cedb89ee2318d4170be0604c4d7232dd2769a9e30e",
+  "expectedCases": 12,
+  "expectedRuns": 10,
+  "expectedRows": 85,
+  "caseIds": [
+    "6_FinFlier_flan_base",
+    "6_FinFlier_mistral_base",
+    "6_FinFlier_t5gemma2_base",
+    "6_flan_base_d",
+    "6_flan_base_m",
+    "6_flan_base_z",
+    "6_mistral_base_d",
+    "6_mistral_base_m",
+    "6_mistral_base_z",
+    "6_t5gemma2_base_d",
+    "6_t5gemma2_base_m",
+    "6_t5gemma2_base_z"
+  ],
+  "requiredBindingKeys": [
+    "ObjectName",
+    "DataName",
+    "Position",
+    "Trend",
+    "Num",
+    "Text"
+  ],
+  "requireRepairCoverage": true
+}

@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 2,
+  "protocol": "experiment6-narrative2-full-v2",
+  "generationBundle": {
+    "root": "code",
+    "path": "generator"
+  },
+  "inputWorkbook": {
+    "path": "generator/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d",
+    "root": "code"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 54,
+  "expectedDiagnosticCases": 4,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ]
+  },
+  "parts": [
+    {
+      "part": 1,
+      "name": "retriever",
+      "route": "adapter-converter",
+      "cases": [
+        {
+          "outputId": "6_flan_z",
+          "sourceId": "finqa_flan_z",
+          "promptMode": "zero-shot"
+        },
+        {
+          "outputId": "6_flan_m",
+          "sourceId": "finqa_flan_m",
+          "promptMode": "many-shot"
+        },
+        {
+          "outputId": "6_flan_d",
+          "sourceId": "finqa_flan_d",
+          "promptMode": "dynamic-shot"
+        },
+        {
+          "outputId": "6_mistral_z",
+          "sourceId": "finqa_mistral_z",
+          "promptMode": "zero-shot"
+        },
+        {
+          "outputId": "6_mistral_m",
+          "sourceId": "finqa_mistral_m",
+          "promptMode": "many-shot"
+        },
+        {
+          "outputId": "6_mistral_d",
+          "sourceId": "finqa_mistral_d",
+          "promptMode": "dynamic-shot"
+        },
+        {
+          "outputId": "6_t5gemma2_z",
+          "sourceId": "finqa_t5gemma2_z",
+          "promptMode": "zero-shot"
+        },
+        {
+          "outputId": "6_t5gemma2_m",
+          "sourceId": "finqa_t5gemma2_m",
+          "promptMode": "many-shot"
+        },
+        {
+          "outputId": "6_t5gemma2_d",
+          "sourceId": "finqa_t5gemma2_d",
+          "promptMode": "dynamic-shot"
+        }
+      ]
+    },
+    {
+      "part": 2,
+      "name": "no-adapter",
+      "route": "direct-binding",
+      "models": [
+        {
+          "outputStem": "6_mistral_base",
+          "sourceId": "mistral_v0_3"
+        },
+        {
+          "outputStem": "6_flan_base",
+          "sourceId": "flan_t5_large"
+        },
+        {
+          "outputStem": "6_t5gemma2_base",
+          "sourceId": "t5gemma_2_1b_1b"
+        },
+        {
+          "outputStem": "6_gpt5.3-CodexS",
+          "sourceId": "gpt5_3_codexS"
+        },
+        {
+          "outputStem": "6_gpt5.5",
+          "sourceId": "gpt5_5"
+        },
+        {
+          "outputStem": "6_qwen",
+          "sourceId": "qwen3_6"
+        },
+        {
+          "outputStem": "6_mistral4",
+          "sourceId": "mistral4"
+        },
+        {
+          "outputStem": "6_llama",
+          "sourceId": "llama4"
+        }
+      ],
+      "promptModes": [
+        "zero-shot",
+        "many-shot",
+        "dynamic-shot"
+      ]
+    },
+    {
+      "part": 3,
+      "name": "original-narrative",
+      "route": "mixed",
+      "cases": [
+        {
+          "outputId": "6_FinFlier_flan_z",
+          "sourceId": "finqa_flan_z",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_flan_m",
+          "sourceId": "finqa_flan_m",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_flan_d",
+          "sourceId": "finqa_flan_d",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_mistral_z",
+          "sourceId": "finqa_mistral_z",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_mistral_m",
+          "sourceId": "finqa_mistral_m",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_mistral_d",
+          "sourceId": "finqa_mistral_d",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_t5gemma2_z",
+          "sourceId": "finqa_t5gemma2_z",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_t5gemma2_m",
+          "sourceId": "finqa_t5gemma2_m",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_t5gemma2_d",
+          "sourceId": "finqa_t5gemma2_d",
+          "route": "adapter-converter"
+        },
+        {
+          "outputId": "6_FinFlier_qwen",
+          "sourceId": "qwen3_6",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_llama",
+          "sourceId": "llama4",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_mistral4",
+          "sourceId": "mistral4",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_mistral_base",
+          "sourceId": "mistral_v0_3",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_flan_base",
+          "sourceId": "flan_t5_large",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_t5gemma2_base",
+          "sourceId": "t5gemma_2_1b_1b",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_gpt5.3-CodexS",
+          "sourceId": "gpt5_3_codexS",
+          "route": "direct-binding"
+        },
+        {
+          "outputId": "6_FinFlier_gpt5.5",
+          "sourceId": "gpt5_5",
+          "route": "direct-binding"
+        }
+      ],
+      "promptMode": "original"
+    },
+    {
+      "part": 4,
+      "name": "gpt-4.1",
+      "route": "direct-binding",
+      "cases": [
+        {
+          "outputId": "6_FinFlier_gpt4.1",
+          "sourceId": "gpt4_1",
+          "promptMode": "original"
+        },
+        {
+          "outputId": "6_gpt4.1_z",
+          "sourceId": "gpt4_1",
+          "promptMode": "zero-shot"
+        },
+        {
+          "outputId": "6_gpt4.1_m",
+          "sourceId": "gpt4_1",
+          "promptMode": "many-shot"
+        },
+        {
+          "outputId": "6_gpt4.1_d",
+          "sourceId": "gpt4_1",
+          "promptMode": "dynamic-shot"
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "outputId": "control_converter_original",
+      "sourceId": "blank_candidate",
+      "route": "converter-control",
+      "promptMode": "original"
+    },
+    {
+      "outputId": "control_converter_zero",
+      "sourceId": "blank_candidate",
+      "route": "converter-control",
+      "promptMode": "zero-shot"
+    },
+    {
+      "outputId": "control_converter_many",
+      "sourceId": "blank_candidate",
+      "route": "converter-control",
+      "promptMode": "many-shot"
+    },
+    {
+      "outputId": "control_converter_dynamic",
+      "sourceId": "blank_candidate",
+      "route": "converter-control",
+      "promptMode": "dynamic-shot"
+    }
+  ],
+  "retriever": {
+    "batchSize": 4,
+    "maxInputTokens": 8192,
+    "maxNewTokens": 128,
+    "structuredOutput": "canonical",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "1",
+    "familyCudaVisibleDevices": {
+      "flan": "0",
+      "t5gemma2": "1",
+      "mistral": "0"
+    },
+    "tokenizers": {
+      "flan": "google/flan-t5-large",
+      "mistral": "mistralai/Mistral-7B-Instruct-v0.3",
+      "t5gemma2": "google/t5gemma-2-1b-1b"
+    },
+    "generationCache": {
+      "t5gemma2": {
+        "defaultImplementation": "hybrid",
+        "disableAboveInputTokens": 4096,
+        "fallback": "use_cache_false_no_input_truncation",
+        "reason": "transformers-5.6.0 T5Gemma2 hybrid/dynamic cross-attention cache clips encoder keys at 4096 tokens"
+      }
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "flan": "transformers_set_seed_plus_greedy_deterministic",
+      "t5gemma2": "transformers_set_seed_plus_model_sampling",
+      "mistral": "greedy_deterministic_seed_recorded"
+    },
+    "scheduler": {
+      "policy": "mistral-batch4-equivalence-validated-gpu0-slot2",
+      "familyWorkers": 2,
+      "familyWorkerOverrides": {
+        "flan": 3,
+        "mistral": 3
+      },
+      "gpuLockNamespace": "experiment6_retriever_gpu_slot2",
+      "converterOverlap": true,
+      "familyShards": {
+        "flan": [
+          [
+            "6_flan_z",
+            "6_FinFlier_flan_m",
+            "6_flan_base_m",
+            "6_FinFlier_flan_base"
+          ],
+          [
+            "6_flan_m",
+            "6_FinFlier_flan_z",
+            "6_flan_base_z"
+          ],
+          [
+            "6_flan_d",
+            "6_FinFlier_flan_d",
+            "6_flan_base_d"
+          ]
+        ],
+        "t5gemma2": [
+          [
+            "6_t5gemma2_z",
+            "6_t5gemma2_d",
+            "6_FinFlier_t5gemma2_m",
+            "6_t5gemma2_base_m",
+            "6_FinFlier_t5gemma2_base"
+          ],
+          [
+            "6_t5gemma2_m",
+            "6_FinFlier_t5gemma2_z",
+            "6_FinFlier_t5gemma2_d",
+            "6_t5gemma2_base_z",
+            "6_t5gemma2_base_d"
+          ]
+        ],
+        "mistral": [
+          [
+            "6_mistral_z",
+            "6_FinFlier_mistral_m",
+            "6_mistral_base_m",
+            "6_FinFlier_mistral_base"
+          ],
+          [
+            "6_mistral_m",
+            "6_FinFlier_mistral_z",
+            "6_mistral_base_z"
+          ],
+          [
+            "6_mistral_d",
+            "6_FinFlier_mistral_d",
+            "6_mistral_base_d"
+          ]
+        ]
+      },
+      "batchAdjustment": {
+        "scope": "Mistral shard 1 only",
+        "from": 1,
+        "to": 4,
+        "allowedParameter": "batch_size",
+        "semanticEquivalenceSmokeRows": 8,
+        "semanticEquivalence": "byte-identical",
+        "formalModelParametersChanged": false
+      }
+    }
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 600,
+    "parallelism": 1,
+    "maxAttempts": 3,
+    "maxInputTokens": 8192,
+    "localContextTokens": 12288,
+    "tokenizers": {
+      "qwen3_6": {
+        "root": "models",
+        "path": ".cache/huggingface/hub/models--Qwen--Qwen3.6-35B-A3B-FP8/snapshots/95a723d08a9490559dae23d0cff1d9466213d989"
+      },
+      "llama4": {
+        "root": "models",
+        "path": ".cache/huggingface/hub/models--RedHatAI--Llama-4-Scout-17B-16E-Instruct-quantized.w4a16/snapshots/e8b8a7ca92e62e476ae2e7d3169bf11c7caba485"
+      }
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {
+    "chatmock": {
+      "baseUrl": "http://localhost:8000/v1",
+      "port": 8000,
+      "session": "exp6v2_chatmock"
+    },
+    "qwen3_6": {
+      "baseUrl": "http://localhost:8010/v1",
+      "port": 8010,
+      "session": "exp6v2_qwen",
+      "servedModel": "qwen3_6",
+      "modelPath": {
+        "root": "models",
+        "path": ".cache/huggingface/hub/models--Qwen--Qwen3.6-35B-A3B-FP8/snapshots/95a723d08a9490559dae23d0cff1d9466213d989"
+      },
+      "runtimeProfile": "qwen_fp8_tp2_precise_kv",
+      "quantization": "fp8",
+      "contextTokens": 12288,
+      "enableThinking": false,
+      "responseFormat": "json_schema",
+      "responseSchemaPath": "config/experiment6_narrative2_binding_schema.json",
+      "responseSchemaSha256": "3e6f35ac2e756b1910ed76b35e0d500b2f369ce94b77faba49a22e2204a78c2f"
+    },
+    "llama4": {
+      "baseUrl": "http://localhost:8010/v1",
+      "port": 8010,
+      "session": "exp6v2_llama",
+      "servedModel": "llama4",
+      "modelPath": {
+        "root": "models",
+        "path": ".cache/huggingface/hub/models--RedHatAI--Llama-4-Scout-17B-16E-Instruct-quantized.w4a16/snapshots/e8b8a7ca92e62e476ae2e7d3169bf11c7caba485"
+      },
+      "runtimeProfile": "llama4_scout_w4a16_tp2_offload16",
+      "quantization": "w4a16",
+      "contextTokens": 12288
+    },
+    "mistral4": {
+      "baseUrl": "http://localhost:8012/v1",
+      "port": 8012,
+      "session": "exp6v2_mistral4",
+      "servedModel": "mistral4",
+      "serverBinary": {
+        "root": "utils",
+        "path": "llama.cpp/build/bin/llama-server"
+      },
+      "modelPath": {
+        "root": "models",
+        "path": "mistral_small_4_119b_2603_gguf/UD-Q4_K_M/Mistral-Small-4-119B-2603-UD-Q4_K_M-00001-of-00003.gguf"
+      },
+      "runtimeProfile": "llama_cpp_UD-Q4_K_M",
+      "quantization": "UD-Q4_K_M",
+      "contextTokens": 12288,
+      "nGpuLayers": 20,
+      "tensorSplit": "1,1",
+      "splitMode": "row",
+      "batchSize": 192,
+      "ubatchSize": 48
+    }
+  },
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  }
+}

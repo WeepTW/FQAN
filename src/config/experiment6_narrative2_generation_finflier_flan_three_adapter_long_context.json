@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 6,
+  "protocol": "experiment6-narrative2-generation-v6-flan-finflier-long-context",
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  },
+  "generationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/generation"
+  },
+  "inputWorkbook": {
+    "root": "repo",
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 3,
+  "expectedDiagnosticCases": 0,
+  "expectedPartCounts": {
+    "6": 3
+  },
+  "expectedFormalPredictions": 2550,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v2",
+    "chartNormalizationContract": "strict-json-plus-quoted-bare-percentage-v1",
+    "bindingValueAnchorContract": "measured-series-cell-not-axis-label-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ],
+    "promptPolicyVersion": "finflier-original-reference-v1",
+    "positionIndexContract": "original-data-zero-based-excluding-synthetic-row-v1",
+    "dataNameContract": "exact-case-sensitive-original-header-v1"
+  },
+  "parts": [
+    {
+      "part": 6,
+      "name": "flan-three-adapter-finflier-full-prompt-long-context-diagnostic",
+      "route": "adapter-converter",
+      "promptMode": "original",
+      "cases": [
+        {
+          "outputId": "6_finflier_prompt_flan_z_adapter_long_context",
+          "sourceId": "finqa_flan_z"
+        },
+        {
+          "outputId": "6_finflier_prompt_flan_m_adapter_long_context",
+          "sourceId": "finqa_flan_m"
+        },
+        {
+          "outputId": "6_finflier_prompt_flan_d_adapter_long_context",
+          "sourceId": "finqa_flan_d"
+        }
+      ]
+    }
+  ],
+  "controls": [],
+  "retriever": {
+    "batchSize": 1,
+    "familyBatchSizes": {
+      "flan": 1
+    },
+    "maxInputTokens": 16896,
+    "maxNewTokens": 4096,
+    "structuredOutput": "off",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "0",
+    "familyCudaVisibleDevices": {
+      "flan": "0"
+    },
+    "tokenizers": {
+      "flan": "google/flan-t5-large"
+    },
+    "generationCache": {},
+    "retry": {
+      "maxAttempts": 1,
+      "retryDelaysSeconds": []
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "flan": "transformers_set_seed_plus_greedy_deterministic"
+    },
+    "scheduler": {
+      "policy": "finflier-flan-three-adapter-one-retriever-per-gpu-converter-overlap-v1",
+      "gpuLockNamespace": "experiment6_finflier_flan_three_adapter_long_context_gpu",
+      "converterOverlap": true
+    },
+    "attentionQueryChunkSize": 512
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 0,
+    "parallelism": 1,
+    "maxAttempts": 1,
+    "maxInputTokens": 16896,
+    "localContextTokens": 20992,
+    "tokenizers": {},
+    "familyMaxInputTokens": {
+      "flan": 16896
+    },
+    "familyContextTokens": {
+      "flan": 20992
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {},
+  "inputType": "FinFlier",
+  "rootRole": "diagnostic",
+  "finflierPrompt": {
+    "asset": {
+      "root": "repo",
+      "path": "narrative/assets/generation/finflier_prompt_v1.json",
+      "sha256": "948de4863d1a3901c82682b81875aa848b20e03efeff41c2274feb1dc04a5051"
+    },
+    "sourcePolicy": "reference-default-plus-first-matching-special-v1"
+  }
+}

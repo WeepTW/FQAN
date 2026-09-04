@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T19:57:44.487274Z",
+  "sourceWorkbook": {
+    "path": "C:\\Users\\Weep\\Desktop\\Agent Workspace\\FinFlier Expt. Data\\doc\\data\\1_full_used_data.xlsx",
+    "sha256": "59d38a82bc6ab5f2a3c0935dcd5ef5d0c23195ee46543b4d24a39a15cbd48f15"
+  },
+  "extractedFrom": [
+    {
+      "sheet": "Sheet1",
+      "headerCell": "F1",
+      "range": "F2:F27",
+      "values": 52,
+      "extraction": "Trend strings embedded in result cells"
+    }
+  ],
+  "selectionRule": "The fixed 16-term FinFlier vocabulary approved by the experiment protocol; every term was verified present in 1_full_used_data.xlsx.",
+  "rawDistinctCount": 31,
+  "count": 16,
+  "vocabulary": [
+    "None",
+    "cup and handle",
+    "declined",
+    "double top",
+    "downtrend",
+    "expanded",
+    "inched up",
+    "increase",
+    "least",
+    "lower",
+    "plunges",
+    "reversing",
+    "rounding bottom",
+    "slipped",
+    "upgrade trend",
+    "uptrend"
+  ]
+}

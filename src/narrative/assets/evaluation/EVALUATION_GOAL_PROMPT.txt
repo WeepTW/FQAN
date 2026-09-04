@@ -1,0 +1,16 @@
+/goal
+
+目標：使用 evaluation_bundle 的 Python 固定 evaluator，評估已凍結的 predictions.jsonl，輸出每個 row、每個 binding、六個欄位及 dataset aggregate 指標。
+
+流程：
+1. 不重新生成、補寫或修改 predictions.jsonl。
+2. 驗證 evaluation bundle、gold_targets.json、trend_vocabulary.json 與 predictions.jsonl 的 SHA-256。
+3. 執行：
+   python evaluate_narrative2_annotations.py compare-batch --targets gold_targets.json --predictions predictions.jsonl --output evaluation.json
+4. 執行 evaluator 內建 self-test。
+5. 確認沒有未知 Source、重複 (source, run)、無效 JSON、缺 binding、額外 binding 或欄位型別錯誤。
+6. 回報每個 row、binding 的 ObjectName、DataName、Position、Trend、Num、Text 通過值與 passes/tested。
+7. 回報各欄位 TP、FP、FN、Precision、Recall、F1、exact-match rate，以及 ObjectName 結構、Num 型別、Trend vocabulary coverage。
+8. 若任何 protocol gate 失敗，保持原始輸出不變並列入 rejected；不可自動修正 prediction。
+9. 保存 evaluation.json、evaluation_summary.md、rejected_records.jsonl 與所有 SHA-256。
+10. 在所有輸入都被成功評估或明確列為 rejected 前，不要結束 goal。

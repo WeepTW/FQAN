@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 4,
+  "protocol": "experiment6-narrative2-hybrid-v4-no-gpt41",
+  "baseGenerationConfig": {
+    "root": "repo",
+    "path": "config/experiment6_narrative2_generation.json"
+  },
+  "baseEvaluationConfig": {
+    "root": "repo",
+    "path": "config/experiment6_narrative2_evaluation.json"
+  },
+  "generationRunner": {
+    "root": "dist",
+    "path": "run_experiment6_narrative2_generation.py"
+  },
+  "evaluationRunner": {
+    "root": "dist",
+    "path": "evaluate_narrative2_hybrid_v4_no_gpt41.py"
+  },
+  "rootPrefix": "experiment_6_narrative2_hybrid_v4_no_gpt41_",
+  "expectedRows": 85,
+  "expectedRuns": 10,
+  "expectedOfficialCases": 34,
+  "generationSnapshotExpectedOfficialCases": 38,
+  "generationSnapshotAllowedOfficialCases": [
+    34,
+    38
+  ],
+  "expectedPartCounts": {
+    "1": 9,
+    "2": 12,
+    "3": 13
+  },
+  "expectedFormalPredictions": 28900,
+  "excludedSourceIds": [
+    "gpt5_3_codexS",
+    "qwen3_6",
+    "mistral4",
+    "llama4",
+    "gpt4_1"
+  ],
+  "inferenceWorkbook": {
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d",
+    "root": "repo"
+  },
+  "sourceWorkbook": {
+    "path": "src/narratives/narrative2.xlsx",
+    "sheet": "label",
+    "sha256": "aa98ad33a2c30bcf9e02225fd01b3a4f13b3c3fb533083cf4b04b15cca1db9a3",
+    "root": "data"
+  },
+  "directTokenPreflight": {
+    "sourceIds": [
+      "gpt5_5"
+    ],
+    "proxyTokenizer": "mistralai/Mistral-7B-Instruct-v0.3",
+    "role": "local-reproducible-proxy-no-truncation",
+    "note": "Provider tokenization may differ; the recorded proxy gate must pass before API calls, and provider length errors remain runtime blockers."
+  },
+  "executionGroups": [
+    {
+      "name": "flan",
+      "sourceIds": [
+        "finqa_flan_z",
+        "finqa_flan_m",
+        "finqa_flan_d",
+        "flan_t5_large"
+      ]
+    },
+    {
+      "name": "mistral",
+      "sourceIds": [
+        "finqa_mistral_z",
+        "finqa_mistral_m",
+        "finqa_mistral_d",
+        "mistral_v0_3"
+      ]
+    },
+    {
+      "name": "t5gemma2",
+      "sourceIds": [
+        "finqa_t5gemma2_z",
+        "finqa_t5gemma2_m",
+        "finqa_t5gemma2_d",
+        "t5gemma_2_1b_1b"
+      ]
+    },
+    {
+      "name": "gpt5_5",
+      "sourceIds": [
+        "gpt5_5"
+      ]
+    }
+  ],
+  "retrieverRetry": {
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "preserveAttemptLogs": true,
+    "scope": "transient local retriever runtime failures"
+  },
+  "judgeExamples": {
+    "path": "src/narratives/1_full_used_data.xlsx",
+    "sheet": "Sheet1",
+    "expectedRows": 26,
+    "sha256": "4434ab358462e2b1de4eee24aec75ddf1a47855d2534fa734636ada65d5cd8fe",
+    "repairVersion": "experiment6-judge-examples-canonical-v4",
+    "promptFields": [
+      "ObjectName",
+      "Trend",
+      "Text"
+    ],
+    "root": "data"
+  },
+  "evaluation": {
+    "evaluationBundle": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation"
+    },
+    "goldPath": {
+      "root": "repo",
+      "path": "narrative/assets/evaluation/gold_targets.json"
+    },
+    "goldSha256": "f0f1b517fe5de280451b1273acf095118145ffadb3a4d339528dfc738240696b",
+    "fields": [
+      "ObjectName",
+      "DataName",
+      "Position",
+      "Trend",
+      "Num",
+      "Text"
+    ],
+    "hardFields": [
+      "DataName",
+      "Position"
+    ],
+    "semanticFields": [
+      "ObjectName",
+      "Trend",
+      "Text"
+    ],
+    "numericField": "Num",
+    "failurePolicy": "rejected-zero",
+    "bindingAlignment": "fixed-index-no-reorder",
+    "numericComparison": {
+      "absoluteTolerance": 1e-09,
+      "relativeTolerance": 1e-09,
+      "acceptedPredictionType": "finite-json-number-array",
+      "arrayMatching": "one-to-one"
+    },
+    "selection": {
+      "primary": "six-field-macro-f1",
+      "tieBreakers": [
+        "six-field-macro-precision",
+        "six-field-macro-recall",
+        "run-id-ascending"
+      ],
+      "topK": 3
+    },
+    "judge": {
+      "baseUrl": "http://localhost:8000/v1",
+      "apiKeyEnvironment": "CHATMOCK_API_KEY",
+      "defaultApiKey": "key",
+      "model": "gpt-5.5",
+      "reasoningEffort": "medium",
+      "minimumConfidence": 0.8,
+      "requireEvidenceSpans": true,
+      "blindCaseAndModel": true,
+      "randomizeAB": true,
+      "maxInputTokens": 65536,
+      "reservedRuntimeTokens": 8192,
+      "maxTokens": 4096,
+      "requestTimeoutSeconds": 300,
+      "maxAttempts": 3,
+      "retryDelaysSeconds": [
+        5,
+        15
+      ]
+    },
+    "audit": {
+      "sampleRate": 0.1,
+      "seed": 20260808,
+      "swapAB": true,
+      "thirdAdjudicationOnDisagreement": true
+    }
+  }
+}

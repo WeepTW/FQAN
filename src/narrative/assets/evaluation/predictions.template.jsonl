@@ -1,0 +1,1 @@
+{"source":"SOURCE_ID","run":1,"model":"MODEL_NAME_AND_VERSION","promptSha256":"PROMPT_SHA256","result":[{"ObjectName":["ENTITY"],"DataName":"COLUMN_NAME","Position":[{"Begin":[0,0],"End":[0,0]}],"Trend":"None","Num":[],"Text":"Natural-language annotation."}],"reason":"Model-provided reason."}

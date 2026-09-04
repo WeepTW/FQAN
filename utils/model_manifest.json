@@ -1,0 +1,79 @@
+{
+  "cache_root": "${FQAN_ROOT}/utils/models/.cache/huggingface",
+  "credential_policy": "HF_TOKEN is read from the process environment only",
+  "models": {
+    "deepseek32b": {
+      "model_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "requires_token": false,
+      "revision": "711ad2ea6aa40cfca18895e8aca02ab92df1a746",
+      "terms": "review_upstream_model_card"
+    },
+    "flan_t5_large": {
+      "model_id": "google/flan-t5-large",
+      "requires_token": false,
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "terms": "review_upstream_model_card"
+    },
+    "llama4": {
+      "model_id": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "requires_token": true,
+      "revision": "92f3b1597a195b523d8d9e5700e57e4fbb8f20d3",
+      "terms": "accept_upstream_terms"
+    },
+    "matching_encoder": {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "requires_token": false,
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "terms": "review_upstream_model_card"
+    },
+    "mistral4": {
+      "model_id": "mistralai/Mistral-Small-4-119B-2603-NVFP4",
+      "requires_token": false,
+      "revision": "d57a94c74a961e1f9b489b8b3e792923ca29149b",
+      "terms": "review_upstream_model_card"
+    },
+    "mistral_7b": {
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "requires_token": false,
+      "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+      "terms": "review_upstream_model_card"
+    },
+    "qwen3_6": {
+      "model_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "requires_token": false,
+      "revision": "95a723d08a9490559dae23d0cff1d9466213d989",
+      "terms": "review_upstream_model_card"
+    },
+    "qwythos9b": {
+      "model_id": "empero-ai/Qwythos-9B-Claude-Mythos-5-1M",
+      "requires_token": false,
+      "revision": "763f72fc2c3b186e977adcbaac0c18128f182166",
+      "terms": "review_upstream_model_card"
+    },
+    "t5gemma_2": {
+      "model_id": "google/t5gemma-2-1b-1b",
+      "requires_token": true,
+      "revision": "dd0a2683227859151b1730ca3a63087df5b5f39b",
+      "terms": "accept_upstream_terms"
+    }
+  },
+  "profiles": {
+    "formal_generators": [
+      "qwen3_6",
+      "mistral4",
+      "deepseek32b",
+      "qwythos9b",
+      "llama4"
+    ],
+    "retrievers": [
+      "matching_encoder",
+      "flan_t5_large",
+      "mistral_7b",
+      "t5gemma_2"
+    ],
+    "smoke": [
+      "matching_encoder"
+    ]
+  },
+  "schema_version": 2
+}

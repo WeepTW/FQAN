@@ -1,0 +1,69 @@
+# Credentials and local configuration
+.env
+.env.*
+.llm_credentials.json
+.secrets/
+
+# Python and notebook state
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+
+# External projects, models, and caches
+src/.external/
+utils/models/
+utils/llama.cpp/
+Models/
+.cache/
+
+# Private research records and backup material
+docs/code/
+docs/log/
+docs/ref/
+docs/instructions/backup.md
+docs/instructions/backup.sh
+src/narrative/results/
+**/checkpoint-*/
+**/checkpoints/
+**/outputs/
+**/*.log
+
+# Experiment outputs: retain only the public README
+src/Experiment/*
+!src/Experiment/README.md
+
+# Unlicensed upstream snapshots: retain only attribution READMEs
+src/FINDER/*
+!src/FINDER/README.md
+src/FinFlier/*
+!src/FinFlier/README.md
+
+# Keep Markdown limited to public entry documents
+*.md
+!README.md
+!**/README.md
+!AGENTS.md
+!**/AGENTS.md
+!docs/asset/folder_structure.md
+!docs/asset/system_workflow.md
+!docs/asset/workspace/directory_roles.md
+!docs/asset/workspace/root_tree.md
+!docs/instructions/narrative/artifacts.md
+!docs/instructions/narrative/evaluation.md
+
+# Duplicate licenses and local tooling
+LICENSES/
+.claude/
+.agents/
+.vscode/
+.idea/
+
+# Temporary files
+*.bak
+*.lock
+*.orig
+*.swp
+*.tmp
+*~

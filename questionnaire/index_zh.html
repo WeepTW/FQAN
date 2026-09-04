@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Econ_014 · 三筆資料繫結範例</title>
+<style>
+  :root{
+    --bg:#eef3f6;
+    --panel:#ffffff;
+    --border:#d9e2e7;
+    --muted:#60717d;
+    --text:#1d2c35;
+    --blue:#1e7896;
+    --blue2:#176d88;
+    --red:#cb5353;
+    --red-bg:#fff0f0;
+    --shadow:0 8px 22px rgba(26,45,61,.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color:var(--text);
+    background:linear-gradient(180deg,#f3f7fa 0%, var(--bg) 100%);
+  }
+  .page{width:980px; min-height:720px; margin:0 auto; padding:4px 0 24px;}
+  .stats{display:grid; grid-template-columns:1fr 1fr 1fr 2.05fr 1fr; gap:10px; margin:0 0 14px;}
+  .stat{background:var(--panel); border:1px solid var(--border); border-radius:7px; min-height:62px; padding:12px 14px; box-shadow:var(--shadow);}
+  .label{font-size:11px; letter-spacing:.10em; color:#758793; font-weight:800; margin-bottom:8px;}
+  .value{font-size:15px; font-weight:800; color:#1e2f39; line-height:1.15; word-break:break-word;}
+  .value.small{font-size:13px; line-height:1.2;}
+  .layout{display:grid; grid-template-columns:1.58fr .92fr; gap:14px;}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow);}
+  .main-card{padding:14px;}
+  .side-card{padding:12px; min-height:280px;}
+  .section-title{font-size:11px; letter-spacing:.10em; color:#718591; font-weight:800; margin-bottom:8px;}
+  .chart-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px;}
+  h1{font-size:16px; margin:0; font-weight:800;}
+  .legend{font-size:10px; color:#536774; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:5px 8px; max-width:390px;}
+  .legend-item{display:inline-flex; align-items:center; gap:4px; white-space:nowrap;}
+  .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .chart-wrap{height:342px; border:1px solid #dce6eb; border-radius:6px; padding:8px 10px 4px; overflow:hidden; background:#fff;}
+  svg text{font-family:"Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; fill:#566b76;}
+  .table-wrap{margin-top:12px; border:1px solid #dce6eb; border-radius:6px; max-height:190px; overflow-y:auto; overflow-x:hidden; background:#fff; scrollbar-gutter:stable;}
+  table{border-collapse:collapse; width:100%; font-size:9px; table-layout:fixed;}
+  thead th{position:sticky; top:0; z-index:3; background:#f4f8fa; color:#2c414d; text-align:right; padding:8px 4px; border-bottom:1px solid #dbe5ea; font-weight:800; overflow-wrap:anywhere;}
+  thead th:first-child, tbody td:first-child{text-align:left; width:46px;}
+  tbody td{padding:7px 4px; border-bottom:1px solid #e5edf1; color:#2e4552; text-align:right; overflow-wrap:anywhere;}
+  tbody tr:nth-child(even){background:#fbfdfe;}
+  tbody tr.active-row td:first-child{background:#fff4f4; color:#9d3333; font-weight:800;}
+  tbody td.active-cell{background:#fff4f4; color:#9d3333; font-weight:900;}
+  .narrative{border:1px solid #dce6eb; border-radius:7px; background:#fff; padding:12px 13px; margin-bottom:12px;}
+  .narrative p{font-size:14px; color:#43535e; margin:0; line-height:1.55; overflow-wrap:anywhere;}
+  .binding-title{font-size:12px; letter-spacing:.08em; color:#748995; font-weight:900; margin:10px 0 5px;}
+  .matched{font-size:16px; font-weight:900; margin:0 0 8px; color:#1f2e38;}
+  .binding-options{display:flex; gap:6px; flex-wrap:wrap; margin:0 0 9px;}
+  .binding-chip{
+    appearance:none;
+    border:1px solid #d4e4eb;
+    background:#eef6f8;
+    color:#426473;
+    border-radius:999px;
+    padding:5px 9px;
+    font:inherit;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:background .12s ease, border-color .12s ease, color .12s ease, transform .12s ease;
+  }
+  .binding-chip:hover{background:#e2f0f4; border-color:#bdd6df;}
+  .binding-chip:focus-visible{outline:2px solid #4285a1; outline-offset:2px;}
+  .binding-chip.active{background:#dceff5; border-color:#8fbfcc; color:#184d61; box-shadow:inset 0 0 0 1px #b7d6df;}
+  .binding-chip:active{transform:translateY(1px);}
+  .evidence{border:1.5px solid var(--red); border-radius:7px; padding:12px; background:var(--red-bg);}
+  .evidence .obj{font-size:14px; font-weight:900; margin-bottom:8px; color:#26343d;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px;}
+  .tag{font-size:11px; color:#4b6573; background:#fff; border:1px solid #d9e3e8; border-radius:999px; padding:4px 7px; font-weight:700; max-width:100%;}
+  .evidence-text{font-size:12px; line-height:1.55; color:#7a5b5b; margin:0; overflow-wrap:anywhere;}
+  .reason{margin-top:12px; border:1px solid #dce6eb; border-radius:7px; background:#fff; padding:12px 13px; min-height:45px;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stats">
+    <div class="stat"><div class="label">列數</div><div class="value">13</div></div>
+    <div class="stat"><div class="label">欄數</div><div class="value">7</div></div>
+    <div class="stat"><div class="label">資料繫結數</div><div class="value">3</div></div>
+    <div class="stat"><div class="label">目前資料</div><div id="activeData" class="value small">Capital Economics, 2023</div></div>
+    <div class="stat"><div class="label">趨勢</div><div id="activeTrend" class="value">無(None)</div></div>
+  </div>
+
+  <div class="layout">
+    <section class="card main-card">
+      <div class="section-title">圖表</div>
+      <div class="chart-head">
+        <h1>Econ_014 · 多折線圖</h1>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="chart-wrap">
+        <svg id="chart" width="584" height="318" viewBox="0 0 584 318" role="img" aria-label="Econ_014 多折線圖"></svg>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Actual</th>
+              <th>Goldman Sachs, 2003</th>
+              <th>Goldman Sachs, 2011</th>
+              <th>Goldman Sachs, 2022</th>
+              <th>OECD, 2021</th>
+              <th>Capital Economics, 2023</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="card side-card">
+      <div class="narrative">
+        <div class="section-title">敘事文字</div>
+        <p>經濟合作暨發展組織的2021年預測指出，2030年將達美國GDP的102.7%；凱投宏觀的2023年預測則為2035年達美國GDP的90.1%。相較之下，美國債務在2021年為美國GDP的78.1%。</p>
+      </div>
+
+      <div class="binding-title">資料繫結</div>
+      <div class="matched">配對證據</div>
+      <div class="binding-options" role="group" aria-label="資料繫結選項">
+        <button type="button" class="binding-chip active" data-binding="0" aria-pressed="true">繫結 1</button>
+        <button type="button" class="binding-chip" data-binding="1" aria-pressed="false">繫結 2</button>
+        <button type="button" class="binding-chip" data-binding="2" aria-pressed="false">繫結 3</button>
+      </div>
+
+      <div class="evidence" id="evidenceCard" aria-live="polite">
+        <div class="obj" id="evidenceObject"></div>
+        <div class="tags">
+          <span class="tag" id="evidenceDataName"></span>
+          <span class="tag" id="evidenceTrend"></span>
+          <span class="tag" id="evidenceNum"></span>
+        </div>
+        <p class="evidence-text" id="evidenceText"></p>
+      </div>
+
+      <div class="reason">
+        <div class="section-title">理由</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+const data = [
+  {"Year":2000,"Actual":11.0,"Goldman Sachs, 2003":null,"Goldman Sachs, 2011":null,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2005,"Actual":20.0,"Goldman Sachs, 2003":null,"Goldman Sachs, 2011":null,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2010,"Actual":40.0,"Goldman Sachs, 2003":null,"Goldman Sachs, 2011":null,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2015,"Actual":58.0,"Goldman Sachs, 2003":null,"Goldman Sachs, 2011":null,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2020,"Actual":71.2,"Goldman Sachs, 2003":46.0,"Goldman Sachs, 2011":75.0,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2021,"Actual":78.1,"Goldman Sachs, 2003":48.8,"Goldman Sachs, 2011":79.2,"Goldman Sachs, 2022":null,"OECD, 2021":null,"Capital Economics, 2023":null},
+  {"Year":2022,"Actual":71.5,"Goldman Sachs, 2003":51.6,"Goldman Sachs, 2011":83.4,"Goldman Sachs, 2022":74.0,"OECD, 2021":78.2,"Capital Economics, 2023":null},
+  {"Year":2025,"Actual":null,"Goldman Sachs, 2003":60.0,"Goldman Sachs, 2011":96.0,"Goldman Sachs, 2022":82.0,"OECD, 2021":88.0,"Capital Economics, 2023":79.3},
+  {"Year":2030,"Actual":null,"Goldman Sachs, 2003":73.0,"Goldman Sachs, 2011":114.0,"Goldman Sachs, 2022":94.0,"OECD, 2021":102.7,"Capital Economics, 2023":88.1},
+  {"Year":2035,"Actual":null,"Goldman Sachs, 2003":86.0,"Goldman Sachs, 2011":127.0,"Goldman Sachs, 2022":100.0,"OECD, 2021":114.0,"Capital Economics, 2023":90.1},
+  {"Year":2040,"Actual":null,"Goldman Sachs, 2003":99.0,"Goldman Sachs, 2011":137.0,"Goldman Sachs, 2022":105.0,"OECD, 2021":121.5,"Capital Economics, 2023":89.6},
+  {"Year":2045,"Actual":null,"Goldman Sachs, 2003":113.0,"Goldman Sachs, 2011":146.0,"Goldman Sachs, 2022":110.0,"OECD, 2021":125.5,"Capital Economics, 2023":88.4},
+  {"Year":2050,"Actual":null,"Goldman Sachs, 2003":126.0,"Goldman Sachs, 2011":152.0,"Goldman Sachs, 2022":114.0,"OECD, 2021":128.0,"Capital Economics, 2023":87.0}
+];
+
+const series = ["Actual", "Goldman Sachs, 2003", "Goldman Sachs, 2011", "Goldman Sachs, 2022", "OECD, 2021", "Capital Economics, 2023"];
+
+const bindings = [
+  {
+    objectLabel:"凱投宏觀的2023年預測",
+    displayDataName:"凱投宏觀, 2023",
+    dataName:"Capital Economics, 2023",
+    year:2035,
+    trend:"無(None)",
+    num:90.1,
+    text:"凱投宏觀的2023年預測指出，2035年將達美國GDP的90.1%。"
+  },
+  {
+    objectLabel:"經濟合作暨發展組織的2021年預測",
+    displayDataName:"高盛集團, 2011",
+    dataName:"Goldman Sachs, 2011",
+    year:2030,
+    trend:"無(None)",
+    num:114,
+    text:"經濟合作暨發展組織的2021年預測指出，2030年將達美國GDP的102.7%。"
+  },
+  {
+    objectLabel:"美國債務",
+    displayDataName:"實際值",
+    dataName:"Actual",
+    year:2021,
+    trend:"無(None)",
+    num:78.1,
+    text:"美國債務在2021年為美國GDP的78.1%。"
+  }
+];
+
+const colors = ['#1f7895','#7e68a9','#4e8f64','#c97a35','#5680b9','#8d6e63'];
+const seriesColor = Object.fromEntries(series.map((s,i)=>[s, colors[i % colors.length]]));
+const svg = document.getElementById('chart');
+const legend = document.getElementById('legend');
+const tbody = document.getElementById('rows');
+const activeDataEl = document.getElementById('activeData');
+const activeTrendEl = document.getElementById('activeTrend');
+const evidenceObjectEl = document.getElementById('evidenceObject');
+const evidenceDataNameEl = document.getElementById('evidenceDataName');
+const evidenceTrendEl = document.getElementById('evidenceTrend');
+const evidenceNumEl = document.getElementById('evidenceNum');
+const evidenceTextEl = document.getElementById('evidenceText');
+const chips = Array.from(document.querySelectorAll('.binding-chip'));
+
+const W=584, H=318, m={l:38,r:12,t:18,b:42};
+const plotW=W-m.l-m.r, plotH=H-m.t-m.b;
+const years=data.map(d=>d.Year);
+const minYear=Math.min(...years), maxYear=Math.max(...years), maxVal=160;
+
+function y(v){return m.t + plotH - (v/maxVal)*plotH;}
+function x(year){return m.l + ((year-minYear)/(maxYear-minYear))*plotW;}
+function svgEl(name, attrs){
+  const e=document.createElementNS('http://www.w3.org/2000/svg', name);
+  for(const k in attrs)e.setAttribute(k, attrs[k]);
+  return e;
+}
+function fmt(v){
+  if(v===null || v===undefined)return '—';
+  const n=Number(v);
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
+function renderLegend(selectedDataName){
+  legend.innerHTML='';
+  series.forEach(s=>{
+    const item=document.createElement('span');
+    item.className='legend-item';
+    item.style.opacity = s===selectedDataName ? '1' : '.72';
+    item.style.fontWeight = s===selectedDataName ? '800' : '400';
+    const dot=document.createElement('span');
+    dot.className='dot';
+    dot.style.background=seriesColor[s];
+    const txt=document.createElement('span');
+    txt.textContent=s;
+    item.append(dot,txt);
+    legend.appendChild(item);
+  });
+}
+
+function renderChart(binding){
+  svg.innerHTML='';
+  for(let tick=0;tick<=160;tick+=40){
+    const yy=y(tick);
+    svg.appendChild(svgEl('line',{x1:m.l,y1:yy,x2:W-m.r,y2:yy,stroke:'#e6edf1','stroke-width':1}));
+    const t=svgEl('text',{x:4,y:yy+4,'font-size':9}); t.textContent=tick; svg.appendChild(t);
+  }
+  [2000,2010,2020,2030,2040,2050].forEach(year=>{
+    const xx=x(year);
+    svg.appendChild(svgEl('line',{x1:xx,y1:m.t,x2:xx,y2:m.t+plotH,stroke:'#f0f4f6','stroke-width':1}));
+    const t=svgEl('text',{x:xx,y:H-15,'font-size':9,'text-anchor':'middle'}); t.textContent=year; svg.appendChild(t);
+  });
+
+  series.forEach(s=>{
+    const pts=data.filter(d=>d[s]!==null && d[s]!==undefined).map(d=>[x(d.Year),y(Number(d[s])),d.Year,Number(d[s])]);
+    const selected=s===binding.dataName;
+    for(let i=0;i<pts.length-1;i++){
+      svg.appendChild(svgEl('line',{
+        x1:pts[i][0],y1:pts[i][1],x2:pts[i+1][0],y2:pts[i+1][1],
+        stroke:seriesColor[s],'stroke-width':selected?2.8:1.7,opacity:selected?.98:.46
+      }));
+    }
+    pts.forEach(p=>svg.appendChild(svgEl('circle',{cx:p[0],cy:p[1],r:selected?2.9:2.1,fill:seriesColor[s],opacity:selected?.98:.54})));
+  });
+
+  const xx=x(binding.year), yy=y(Number(binding.num));
+  svg.appendChild(svgEl('line',{x1:xx,y1:m.t,x2:xx,y2:yy,stroke:'#d16060','stroke-width':2,opacity:.35}));
+  svg.appendChild(svgEl('circle',{cx:xx,cy:yy,r:4.8,fill:'#d34f4f',stroke:'#fff','stroke-width':1.6}));
+  const val=svgEl('text',{x:xx+7,y:Math.max(m.t+10,yy-7),'font-size':10,fill:'#b93d3d','font-weight':700});
+  val.textContent=fmt(binding.num); svg.appendChild(val);
+  const axis=svgEl('text',{x:m.l,y:H-2,'font-size':9,fill:'#7a8d98'}); axis.textContent='Year'; svg.appendChild(axis);
+}
+
+function renderTable(binding){
+  tbody.innerHTML='';
+  data.forEach(row=>{
+    const tr=document.createElement('tr');
+    if(row.Year===binding.year)tr.className='active-row';
+    const keys=['Year', ...series];
+    keys.forEach(k=>{
+      const td=document.createElement('td');
+      td.textContent=k==='Year' ? row[k] : fmt(row[k]);
+      if(row.Year===binding.year && k===binding.dataName)td.className='active-cell';
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+function selectBinding(index){
+  const binding=bindings[index];
+  chips.forEach((chip,i)=>{
+    const active=i===index;
+    chip.classList.toggle('active',active);
+    chip.setAttribute('aria-pressed',active?'true':'false');
+  });
+
+  activeDataEl.textContent=binding.dataName;
+  activeTrendEl.textContent=binding.trend;
+  evidenceObjectEl.textContent=binding.objectLabel;
+  evidenceDataNameEl.textContent=binding.displayDataName || binding.dataName;
+  evidenceTrendEl.textContent=`趨勢: ${binding.trend.replace("無(None)", "無")}`;
+  evidenceNumEl.textContent=`數值: ${fmt(binding.num)}`;
+  evidenceTextEl.textContent=binding.text;
+
+  renderLegend(binding.dataName);
+  renderChart(binding);
+  renderTable(binding);
+}
+
+chips.forEach((chip,index)=>chip.addEventListener('click',()=>selectBinding(index)));
+selectBinding(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 6,
+  "protocol": "experiment6-narrative2-generation-v6-flan-finflier-long-context",
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  },
+  "generationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/generation"
+  },
+  "inputWorkbook": {
+    "root": "repo",
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 1,
+  "expectedDiagnosticCases": 0,
+  "expectedPartCounts": {
+    "6": 1
+  },
+  "expectedFormalPredictions": 850,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v2",
+    "chartNormalizationContract": "strict-json-plus-quoted-bare-percentage-v1",
+    "bindingValueAnchorContract": "measured-series-cell-not-axis-label-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ],
+    "promptPolicyVersion": "finflier-original-reference-v1",
+    "positionIndexContract": "original-data-zero-based-excluding-synthetic-row-v1",
+    "dataNameContract": "exact-case-sensitive-original-header-v1"
+  },
+  "parts": [
+    {
+      "part": 6,
+      "name": "mistral-z-adapter-finflier-full-prompt-diagnostic",
+      "route": "adapter-converter",
+      "promptMode": "original",
+      "cases": [
+        {
+          "outputId": "6_finflier_prompt_mistral_z_adapter",
+          "sourceId": "finqa_mistral_z"
+        }
+      ]
+    }
+  ],
+  "controls": [],
+  "retriever": {
+    "batchSize": 1,
+    "familyBatchSizes": {
+      "mistral": 1
+    },
+    "maxInputTokens": 28672,
+    "maxNewTokens": 4096,
+    "structuredOutput": "off",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "0",
+    "familyCudaVisibleDevices": {
+      "mistral": "0"
+    },
+    "tokenizers": {
+      "mistral": "mistralai/Mistral-7B-Instruct-v0.3"
+    },
+    "generationCache": {},
+    "retry": {
+      "maxAttempts": 1,
+      "retryDelaysSeconds": []
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "mistral": "greedy_deterministic_seed_recorded"
+    },
+    "scheduler": {
+      "policy": "finflier-mistral-z-adapter-gpu-lock-v1",
+      "gpuLockNamespace": "experiment6_finflier_mistral_z_adapter_gpu",
+      "converterOverlap": false
+    }
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 0,
+    "parallelism": 1,
+    "maxAttempts": 1,
+    "maxInputTokens": 28672,
+    "localContextTokens": 32768,
+    "tokenizers": {},
+    "familyMaxInputTokens": {
+      "mistral": 28672
+    },
+    "familyContextTokens": {
+      "mistral": 32768
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {},
+  "inputType": "FinFlier",
+  "rootRole": "diagnostic",
+  "finflierPrompt": {
+    "asset": {
+      "root": "repo",
+      "path": "narrative/assets/generation/finflier_prompt_v1.json",
+      "sha256": "948de4863d1a3901c82682b81875aa848b20e03efeff41c2274feb1dc04a5051"
+    },
+    "sourcePolicy": "reference-default-plus-first-matching-special-v1"
+  }
+}

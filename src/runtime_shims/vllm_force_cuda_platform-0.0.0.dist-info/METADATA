@@ -1,0 +1,4 @@
+Metadata-Version: 2.1
+Name: vllm-force-cuda-platform
+Version: 0.0.0
+Summary: Optional local vLLM CUDA platform override for broken NVML probing.

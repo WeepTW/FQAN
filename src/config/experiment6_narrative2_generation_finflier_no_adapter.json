@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 6,
+  "protocol": "experiment6-narrative2-generation-v6-finflier-no-adaptor",
+  "sourceRegistry": {
+    "root": "repo",
+    "path": "config/experiment6_source_registry.json",
+    "sha256": "c87f1a988e043a74f71c33bf4c4822f83d668348f2343a5ecfc23036e3926057"
+  },
+  "generationBundle": {
+    "root": "repo",
+    "path": "narrative/assets/generation"
+  },
+  "inputWorkbook": {
+    "root": "repo",
+    "path": "narrative/assets/generation/narrative2_experiment_input.xlsx",
+    "sheet": "label_input",
+    "sha256": "6337060c21fc53671ddb0eac1d0840df40f66a5b4bc05952ef65c882c0297d0d"
+  },
+  "exampleCsv": {
+    "root": "data",
+    "path": "src/full_example.csv"
+  },
+  "expectedRows": 85,
+  "expectedOfficialCases": 3,
+  "expectedDiagnosticCases": 0,
+  "expectedPartCounts": {
+    "6": 3
+  },
+  "expectedFormalPredictions": 2550,
+  "runs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "seedBase": 2026073100,
+  "promptBuilder": {
+    "manyShotCount": 26,
+    "dynamicShotCount": 10,
+    "dynamicSeed": 20260612,
+    "compactChartFormat": "lossless-json-to-csv-v2",
+    "chartNormalizationContract": "strict-json-plus-quoted-bare-percentage-v1",
+    "bindingValueAnchorContract": "measured-series-cell-not-axis-label-v1",
+    "goldForbiddenKeys": [
+      "targetBindings",
+      "gold",
+      "answer"
+    ],
+    "promptPolicyVersion": "finflier-original-reference-v1",
+    "positionIndexContract": "original-data-zero-based-excluding-synthetic-row-v1",
+    "dataNameContract": "exact-case-sensitive-original-header-v1"
+  },
+  "parts": [
+    {
+      "part": 6,
+      "name": "no-adaptor-finflier-prompt",
+      "route": "direct-binding",
+      "promptMode": "original",
+      "cases": [
+        {
+          "outputId": "6_finflier_prompt_flan_base",
+          "sourceId": "flan_t5_large"
+        },
+        {
+          "outputId": "6_finflier_prompt_mistral_base",
+          "sourceId": "mistral_v0_3"
+        },
+        {
+          "outputId": "6_finflier_prompt_t5gemma2_base",
+          "sourceId": "t5gemma_2_1b_1b"
+        }
+      ]
+    }
+  ],
+  "controls": [],
+  "retriever": {
+    "batchSize": 1,
+    "familyBatchSizes": {
+      "flan": 1,
+      "mistral": 2,
+      "t5gemma2": 2
+    },
+    "maxInputTokens": 8192,
+    "maxNewTokens": 128,
+    "structuredOutput": "canonical",
+    "caseTimeoutSeconds": 0,
+    "cudaVisibleDevices": "0",
+    "familyCudaVisibleDevices": {
+      "flan": "1",
+      "mistral": "0",
+      "t5gemma2": "1"
+    },
+    "tokenizers": {
+      "flan": "google/flan-t5-large",
+      "mistral": "mistralai/Mistral-7B-Instruct-v0.3",
+      "t5gemma2": "google/t5gemma-2-1b-1b"
+    },
+    "generationCache": {
+      "t5gemma2": {
+        "defaultImplementation": "hybrid",
+        "disableAboveInputTokens": 4096,
+        "fallback": "use_cache_false_no_input_truncation"
+      }
+    },
+    "retry": {
+      "maxAttempts": 1,
+      "retryDelaysSeconds": []
+    },
+    "seedPolicy": {
+      "environment": "EXPERIMENT6_RUN_SEED",
+      "flan": "transformers_set_seed_plus_greedy_deterministic",
+      "mistral": "greedy_deterministic_seed_recorded",
+      "t5gemma2": "transformers_set_seed_plus_model_sampling"
+    },
+    "scheduler": {
+      "policy": "finflier-two-gpu-native-lock-v1",
+      "gpuLockNamespace": "experiment6_finflier_gpu",
+      "converterOverlap": false
+    }
+  },
+  "directBinding": {
+    "maxNewTokens": 4096,
+    "rowTimeoutSeconds": 600,
+    "parallelism": 1,
+    "maxAttempts": 3,
+    "maxInputTokens": 8192,
+    "localContextTokens": 12288,
+    "tokenizers": {},
+    "familyMaxInputTokens": {
+      "flan": 512,
+      "mistral": 28672,
+      "t5gemma2": 28672
+    },
+    "familyContextTokens": {
+      "flan": 512,
+      "mistral": 32768,
+      "t5gemma2": 32768
+    }
+  },
+  "converter": {
+    "baseUrl": "http://localhost:8000/v1",
+    "apiKeyEnvironment": "CHATMOCK_API_KEY",
+    "defaultApiKey": "key",
+    "requestedModel": "gpt-5.5",
+    "actualModelRequired": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "maxTokens": 4096,
+    "requestTimeoutSeconds": 300,
+    "maxAttempts": 3,
+    "retryDelaysSeconds": [
+      5,
+      15
+    ],
+    "parallelism": 2
+  },
+  "runtimeRoutes": {},
+  "inputType": "FinFlier",
+  "rootRole": "diagnostic",
+  "finflierPrompt": {
+    "asset": {
+      "root": "repo",
+      "path": "narrative/assets/generation/finflier_prompt_v1.json",
+      "sha256": "948de4863d1a3901c82682b81875aa848b20e03efeff41c2274feb1dc04a5051"
+    },
+    "sourcePolicy": "reference-default-plus-first-matching-special-v1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "pipeline_contracts": {
+    "retriever_models": {
+      "flan_t5_large": {
+        "display_name": "FLAN-T5-Large",
+        "base_model": "google/flan-t5-large"
+      },
+      "mistral_v0_3": {
+        "display_name": "Mistral-7B-Instruct-v0.3",
+        "base_model": "mistralai/Mistral-7B-Instruct-v0.3"
+      },
+      "t5gemma_2_1b_1b": {
+        "display_name": "T5Gemma 2 1B-1B",
+        "base_model": "google/t5gemma-2-1b-1b"
+      }
+    },
+    "generator_models": {
+      "qwen3_6": {"display_name": "Qwen3.6"},
+      "mistral4": {"display_name": "Mistral Small 4"},
+      "llama3_3": {"display_name": "Llama 3.3"},
+      "gpt4_1": {"display_name": "GPT-4.1"},
+      "gpt5_5": {"display_name": "GPT-5.5"}
+    },
+    "default_artifact_paths": {
+      "finqa": {
+        "train": {},
+        "dev": {},
+        "test": {}
+      }
+    },
+    "raw_prediction_artifacts": {
+      "finqa": {
+        "train": {},
+        "dev": {},
+        "test": {}
+      }
+    }
+  }
+}
